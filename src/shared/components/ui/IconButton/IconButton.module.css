@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+.iconButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.iconButton:hover {
+  border-color: #C7CCDA;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar {
+  color: var(--text-inverse);
+  background: transparent;
+}
+
+.sidebar:hover {
+  background: var(--bg-sidebar-hover);
+}
+
+.sidebarIconButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-inverse);
+  transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
+  position: relative;
+  flex-shrink: 0;
+
+}
+
+.sidebarIconButton:hover {
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-sm);
+}

@@ -1,0 +1,227 @@
+.footer {
+    padding: 12px 14px 16px;
+    position: relative;
+
+    border-top: 1px solid var(--sidebar-border);
+}
+
+.userCard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 8px;
+
+    border-radius: var(--radius-sm);
+    justify-content: space-between;
+    /* background: var(--bg-sidebar-raised); */
+    cursor: pointer;
+}
+
+.userCard:hover {
+    background: var(--bg-sidebar-hover);
+}
+
+.userCardLayout {
+    display: flex;
+    gap: 10px
+}
+
+.avatar {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #6E7BFF;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.menuItem:hover {
+    background: var(--bg-app);
+}
+
+.menuItem .miMain {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.menuItem .miDesc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.menuItem.selected {
+    background: var(--accent-amber-soft);
+}
+
+.menuItem.danger {
+    color: var(--accent-red);
+}
+
+.menuDivider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 5px 2px;
+}
+
+.footer {
+    padding: 12px 14px 16px;
+    border-top: 1px solid var(--sidebar-border);
+    position: relative;
+
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.userName {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-inverse);
+}
+
+.userRole {
+    font-size: 11px;
+    color: var(--text-inverse-dim);
+}
+
+.menu {
+    position: absolute;
+
+    left: 14px;
+    /* right: 14px; */
+
+    bottom: calc(100% + 8px);
+
+    background: var(--bg-panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-lg);
+
+    z-index: 999;
+
+    min-width: 200px;
+
+    overflow-y: auto;
+    overflow-x: visible;
+
+}
+
+/* 
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-emerald);
+}
+
+.tenant {
+    flex: 1;
+    color: var(--text-inverse);
+    font-size: 13px;
+}
+
+.modeBadge {
+    background: var(--accent-amber-soft);
+    color: var(--accent-amber);
+
+    padding: 2px 6px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.topIcons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-top: 24px;
+}
+
+
+.sidebarFooter {
+    padding: 12px 14px 16px;
+    border-top: 1px solid var(--sidebar-border);
+    position: relative;
+
+}
+
+.menuLeft {
+    left: 0;
+    right: auto;
+    bottom: calc(100% + 6px);
+    top: auto;
+}
+
+
+.railToggleBtn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    color: var(--text-inverse);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    flex-shrink: 0;
+    transition: background .15s ease;
+}
+
+.railToggleBtn:hover {
+    background: var(--bg-sidebar-hover);
+}
+
+.railtoggleBtn .iconClose {
+    display: none;
+}
+
+.app.sidebarCollapsed .railToggleBtn .iconHamburger {
+    display: none;
+}
+
+.app.sidebarCollapsed .railToggleBtn .iconClose {
+    display: block;
+} */

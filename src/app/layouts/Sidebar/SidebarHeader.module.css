@@ -1,0 +1,40 @@
+.header {
+    padding: 18px;
+}
+
+.brand {
+    display: flex;
+    flex: 1;
+
+    align-items: center;
+    gap: 12px;
+}
+
+.brandInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.brandName {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16.5px;
+    letter-spacing: 0.2px;
+    color: var(--text-inverse)
+}
+
+.brandSub {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-inverse-dim);
+    margin-top: 1px;
+
+}
+
+.topRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

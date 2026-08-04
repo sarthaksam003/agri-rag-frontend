@@ -1,0 +1,109 @@
+.langTrigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.langTrigger:hover {
+    border-color: #C7CCDA;
+    box-shadow: var(--shadow-sm);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 230px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 6px;
+    z-index: 80;
+    display: none;
+    animation: menuIn .13s ease;
+}
+
+.menu.open {
+    display: block;
+}
+
+@keyframes menuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.menu-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-faint);
+    padding: 8px 10px 4px;
+    font-weight: 600;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.menu-item:hover {
+    background: var(--bg-app);
+}
+
+.menu-item .mi-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.menu-item .mi-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.menu-item.selected {
+    background: var(--accent-amber-soft);
+}
+
+.menu-item.danger {
+    color: var(--accent-red);
+}
+
+.menu-divider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 5px 2px;
+}

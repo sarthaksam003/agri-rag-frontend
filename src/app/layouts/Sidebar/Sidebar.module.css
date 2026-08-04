@@ -1,0 +1,17 @@
+.sidebar {
+    width: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg-sidebar);
+    color: var(--text-inverse);
+
+    border-right: 1px solid var(--sidebar-border);
+    flex-shrink: 0;
+
+}
+
+.spacer {
+    flex: 1;
+}

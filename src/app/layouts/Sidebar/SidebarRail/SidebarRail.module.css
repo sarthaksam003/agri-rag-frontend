@@ -1,0 +1,117 @@
+.rail {
+    width: 70px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--sidebar-border);
+    background: var(--bg-sidebar);
+}
+
+.spacer {
+    flex: 1;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+}
+
+.iconButton {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--text-inverse-dim);
+
+    position: relative;
+    cursor: pointer;
+}
+
+.iconButton::before {
+
+    content: "";
+
+    position: absolute;
+
+    right: -12px;
+
+    top: 4px;
+    bottom: 8px;
+
+    width: 3px;
+    height: 80%;
+    opacity: 0;
+
+    background: var(--accent-amber);
+
+    border-radius: 999px;
+}
+
+.iconButtonActive {
+    position: relative;
+    background: var(--bg-sidebar-hover);
+    color: var(--text-inverse);
+}
+
+.iconButtonActive::before {
+    opacity: 1;
+
+}
+
+
+.toggleButton {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 16px;
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--text-inverse);
+}
+
+
+
+.avatarButton {
+    width: 40px;
+    height: 40px;
+
+    margin-bottom: 16px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #6E7BFF;
+
+    color: white;
+
+    font-weight: 700;
+}
+
+.toggleButton:hover,
+.iconButton:hover {
+    background: var(--bg-sidebar-hover);
+    color: var(--text-inverse);
+}

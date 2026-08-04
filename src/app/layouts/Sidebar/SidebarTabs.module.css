@@ -1,0 +1,67 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 10px;
+    gap: 2px;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text-inverse-dim);
+
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+    position: relative;
+    transition: background .15s ease;
+}
+
+.navItem::before {
+    content: "";
+
+    position: absolute;
+
+    left: -10px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 3px;
+    height: 34px;
+
+    border-radius: 999px;
+
+    background: var(--accent-amber);
+
+    opacity: 0;
+
+    transition: opacity .15s ease;
+}
+
+.navItem svg {
+    flex-shrink: 0;
+}
+
+.navItem:hover {
+    background: var(--bg-sidebar-hover);
+    color: var(--text-inverse);
+}
+
+.navItemActive {
+    background: var(--bg-sidebar-hover);
+    color: var(--text-inverse);
+}
+
+.navItemActive::before {
+
+    opacity: 1;
+}

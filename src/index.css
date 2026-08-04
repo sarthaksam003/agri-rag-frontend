@@ -1,160 +1,58 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #1a56db;
-  --color-primary-dark: #1e40af;
-  --color-primary-light: #3b82f6;
-  --color-secondary: #f97316;
-  --color-surface: #ffffff;
-  --color-surface-dark: #f8fafc;
-  --color-surface-darker: #f1f5f9;
-  --color-border: #e2e8f0;
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-muted: #94a3b8;
-  --color-success: #22c55e;
-  --color-error: #ef4444;
-  --color-warning: #f59e0b;
-  --color-odia-primary: #d97706;
-  --color-odia-dark: #92400e;
-  --color-odia-light: #fbbf24;
-  --color-odia-bg: #fffbeb;
+:root {
+  --bg-panel: #FFFFFF;
+  --bg-app: #EEF1F6;
+  --bg-sidebar: #10162B;
+  --bg-sidebar-raised: #171F3B;
+  --bg-sidebar-hover: #1E2745;
+  --sidebar-border: #262F52;
+
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-faint: #8A90A6;
+  --text-inverse: #E8EAF2;
+  --text-inverse-dim: #8D93B0;
+
+  --border: #DFE3EC;
+  --border-soft: #EAEDF3;
+
+  --accent-emerald: #2F9E68;
+  --accent-emerald-soft: #E3F5EC;
+  --accent-indigo: #5B6EF5;
+  --accent-amber: #D9A441;
+  --accent-amber-soft: #FBEFD6;
+  --accent-amber-line: #E8C273;
+
+  --accent-red: #D6553F;
+  --accent-red-soft: #FBE7E2;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 22, 43, .06);
+  --shadow-md: 0 8px 24px rgba(16, 22, 43, .10);
+  --shadow-lg: 0 16px 48px rgba(16, 22, 43, .18);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body, #root {
-  height: 100%;
+html,
+body,
+#root {
   width: 100%;
+  height: 100%;
 }
 
 body {
-  font-family: 'Inter', 'Noto Sans Odia', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: var(--font-body);
+
 }
 
-/* Odia text styling */
-.odia-text {
-  font-family: 'Noto Sans Odia', 'Inter', sans-serif;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Typing indicator animation */
-@keyframes typing-bounce {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-8px); }
-}
-
-.typing-dot {
-  animation: typing-bounce 1.4s infinite ease-in-out;
-}
-
-.typing-dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-/* Pulse animation for recording */
-@keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
-}
-
-.recording-pulse {
-  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-/* Slide in animation */
-@keyframes slide-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.3s ease-out;
-}
-
-/* Fade in */
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.4s ease-out;
-}
-
-/* Hallucination highlight */
-.hallucination-highlight {
-  background: linear-gradient(120deg, #fecaca 0%, #fecaca 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 40%;
-  background-position: 0 90%;
-  border-radius: 2px;
-  padding: 0 2px;
-}
-
-/* Markdown content styling */
-.markdown-content h1,
-.markdown-content h2,
-.markdown-content h3 {
-  font-weight: 600;
-  margin-top: 0.75rem;
-  margin-bottom: 0.375rem;
-}
-
-.markdown-content p {
-  margin-bottom: 0.5rem;
-  line-height: 1.625;
-}
-
-.markdown-content ul, .markdown-content ol {
-  padding-left: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.markdown-content li {
-  margin-bottom: 0.25rem;
-}
-
-.markdown-content code {
-  background: #f1f5f9;
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-}
-
-.markdown-content pre {
-  background: #1e293b;
-  color: #e2e8f0;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  margin-bottom: 0.5rem;
-}
-
-.markdown-content pre code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
+* {
+  box-sizing: border-box;
 }
