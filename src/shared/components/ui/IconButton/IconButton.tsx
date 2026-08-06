@@ -12,6 +12,7 @@ export function IconButton({
   icon,
   className,
   variant,
+  children,
   ...props
 }: IconButtonProps) {
   return (
@@ -20,6 +21,7 @@ export function IconButton({
       {...props}
     >
       {icon}
+      {children}
     </button>
   );
 }

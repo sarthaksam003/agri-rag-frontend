@@ -1,0 +1,122 @@
+.recording-bar {
+    max-width: 760px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--accent-red-soft);
+    border: 1px solid #F2C2B6;
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    /* position: absolute; */
+}
+
+.recording-bar[hidden] {
+    display: none;
+}
+
+.rec-dot-wrap {
+    position: relative;
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+}
+
+.rec-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent-red);
+}
+
+.rec-dot-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent-red);
+    opacity: .55;
+    animation: recPing 1.3s infinite ease-out;
+}
+
+@keyframes recPing {
+    0% {
+        transform: scale(1);
+        opacity: .55;
+    }
+
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+.rec-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #B03A28;
+}
+
+.rec-timer {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #B03A28;
+}
+
+.rec-cancel {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #B03A28;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 7px;
+    transition: background .15s ease;
+}
+
+.rec-cancel:hover {
+    background: rgba(214, 85, 63, 0.12);
+}
+
+.recording-bar-labels-layout {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.recording-bar-btn-layout {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.rec-confirm {
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--accent-emerald-soft);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+
+}
+
+.rec-confirm:hover {
+
+    border-color: #C7CCDA;
+    color: var(--text-inverse);
+    background: var(--accent-emerald);
+
+}

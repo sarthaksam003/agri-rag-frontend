@@ -1,24 +1,34 @@
-import { useConversationStore } from '@/features/conversation/store/conversation.store';
-import { HiOutlinePlusCircle } from 'react-icons/hi2';
+import { HiOutlinePlusCircle } from "react-icons/hi2";
 import styles from "./NewChatButton.module.css";
-import { useNavigate } from 'react-router-dom';
+
+import { useNewChat } from "@/features/conversation/hooks/useNewChat";
 
 export const NewChatButton = () => {
-    const { clearChat } = useConversationStore();
-    const navigate = useNavigate();
+
+    const handleNewChat = useNewChat();
+
     return (
-        <div className="" style={{ display: "flex", justifyContent: "center" }}>
+
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+            }}
+        >
+
             <button
-                onClick={() => {
-                    clearChat();
-                    navigate("/chat");
-                }}
                 className={styles.button}
+                onClick={handleNewChat}
             >
+
                 <HiOutlinePlusCircle />
 
                 <span>New Chat</span>
+
             </button>
+
         </div>
-    )
-}
+
+    );
+
+};

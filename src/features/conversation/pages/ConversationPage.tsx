@@ -1,20 +1,11 @@
-import ConversationView from "@/features/conversation/components/ConversationView/ConversationView";
-import EmptyConversation from "@/features/conversation/components/EmptyConversation/EmptyConversation";
-import { useParams } from "react-router-dom";
+// import { Composer } from "@/features/conversation/components/Composer";
+import { ConversationView } from "@/features/conversation/components/ConversationView/ConversationView";
+// import EmptyConversation from "@/features/conversation/components/EmptyConversation/EmptyConversation";
+// import { useComposer } from "@/features/conversation/hooks/useComposer";
+// import { useMockConversation } from "@/features/conversation/hooks/useMockConversation";
+// import { useParams } from "react-router-dom";
+export const ConversationPage = () => {
 
+  return <ConversationView />;
 
-export function ConversationPage() {
-  const { conversationId } = useParams();
-
-  return (
-    <div
-      style={{
-        backgroundColor: "var(--background-app)",
-        color: "var(--text-primary)",
-      }}
-    >
-      conversationId
-      ? <ConversationView />
-      : <EmptyConversation />;
-    </div>);
-}
+};

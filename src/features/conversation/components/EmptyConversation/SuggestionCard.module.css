@@ -1,0 +1,22 @@
+    .starter-card {
+        text-align: left;
+        background: var(--bg-panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 13px 15px;
+        cursor: pointer;
+        transition: border-color .15s ease, box-shadow .15s ease, transform .1s ease;
+    }
+
+    .starter-card:hover {
+        border-color: var(--accent-amber-line);
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-1px);
+    }
+
+    .starter-card .sc-text {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-primary);
+        line-height: 1.4;
+    }

@@ -1,11 +1,8 @@
 import { create } from "zustand";
 
 interface AudioStore {
-  isRecording: boolean;
   isPlayingAudio: boolean;
   currentAudioId: string | null;
-
-  setIsRecording: (recording: boolean) => void;
 
   setIsPlayingAudio: (
     playing: boolean,
@@ -14,12 +11,8 @@ interface AudioStore {
 }
 
 export const useAudioStore = create<AudioStore>((set) => ({
-  isRecording: false,
   isPlayingAudio: false,
   currentAudioId: null,
-
-  setIsRecording: (recording) =>
-    set({ isRecording: recording }),
 
   setIsPlayingAudio: (playing, id = null) =>
     set({

@@ -1,0 +1,99 @@
+.msg {
+    display: flex;
+    gap: 12px;
+    width: min(920px, 100%);
+    justify-content: flex-end;
+}
+
+
+.msg-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.msg-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 78%;
+}
+
+.msg-bubble {
+    padding: 12px 15px;
+    border-radius: var(--radius-md);
+    font-size: 14.5px;
+    line-height: 1.55;
+}
+
+
+.msg.user .msg-avatar {
+    background: linear-gradient(135deg, #5B6EF5, #7D8CF9);
+    color: white;
+}
+
+.msg-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 78%;
+}
+
+.msg.user .msg-body {
+    align-items: flex-end;
+}
+
+.msg.user .msg-bubble {
+    background: var(--bg-sidebar);
+    color: var(--text-inverse);
+    border-top-right-radius: 4px;
+}
+
+.voice-tag {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-inverse-dim);
+    padding: 0 4px;
+}
+
+.msg-time {
+    font-size: 10.5px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    padding: 0 4px;
+}
+
+.copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.copy-btn:hover {
+    border-color: #C7CCDA;
+    color: var(--text-primary);
+    background: var(--bg-app);
+}
+
+.copy-btn.copied {
+    border-color: var(--accent-emerald);
+    color: var(--accent-emerald);
+    background: var(--accent-emerald-soft);
+}

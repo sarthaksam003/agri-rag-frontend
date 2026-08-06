@@ -3,6 +3,7 @@ import { TopBar } from "./TopBar/TopBar";
 import { AppShell } from "@/shared/components/layout/AppShell";
 import { AppMain } from "@/shared/components/layout/AppMain";
 import styles from "./RootLayout.module.css";
+import { Outlet } from "react-router-dom";
 
 export function RootLayout() {
   return (
@@ -10,7 +11,9 @@ export function RootLayout() {
       <Sidebar />
       <div className={styles.content}>
         <TopBar />
-        <AppMain />
+        <AppMain >
+          <Outlet />
+        </AppMain >
       </div>
     </AppShell>);
 }

@@ -1,0 +1,131 @@
+.composer-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 6px 2px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.chip-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.chip-btn:hover {
+    border-color: #C7CCDA;
+    color: var(--text-primary);
+    background: var(--bg-app);
+}
+
+.composer-hint {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+}
+
+.send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    background: var(--bg-sidebar);
+    color: var(--text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background .15s ease, transform .1s ease;
+}
+
+.send-btn:hover {
+    background: var(--accent-amber);
+}
+
+.send-btn:active {
+    transform: scale(0.94);
+}
+
+.send-btn:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.mic-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-app);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mic-btn:hover {
+    border-color: #C7CCDA;
+    color: var(--text-primary);
+}
+
+.mic-btn.recording {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: #fff;
+}
+
+.mic-btn.recording::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-red);
+    opacity: .55;
+    animation: micPulse 1.3s infinite ease-out;
+}
+
+@keyframes micPulse {
+    0% {
+        transform: scale(.85);
+        opacity: .55;
+    }
+
+    100% {
+        transform: scale(1.55);
+        opacity: 0;
+    }
+}
+
+
+
+/*
+
+.composer-wrap {
+    padding: 14px 24px 20px;
+    background: linear-gradient(to bottom, transparent, var(--bg-app) 30%);
+    flex-shrink: 0;
+}
+
+
+*/
