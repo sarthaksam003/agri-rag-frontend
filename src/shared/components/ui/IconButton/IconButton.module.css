@@ -22,6 +22,17 @@
   box-shadow: var(--shadow-sm);
 }
 
+.iconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.iconButton:disabled:hover {
+  border-color: var(--border);
+  color: var(--text-secondary);
+  box-shadow: none;
+}
+
 .sidebar {
   color: var(--text-inverse);
   background: transparent;

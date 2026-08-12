@@ -1,6 +1,6 @@
 .logo {
-    width: 72px;
-    height: 72px;
+    width: 100px;
+    height: 80px;
 }
 
 .empty-state {
@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px 0;
+    /* padding: 20px 0; */
 }
 
 .empty-avatar {

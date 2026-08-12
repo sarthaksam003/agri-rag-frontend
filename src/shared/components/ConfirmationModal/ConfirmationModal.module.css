@@ -1,0 +1,244 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.5rem;
+
+    background: rgb(15 23 42 / 45%);
+
+    backdrop-filter: blur(0.2rem);
+}
+
+.modal {
+    width: min(100%, 28rem);
+
+    max-height: min(90dvh, 36rem);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border-subtle);
+    border-radius: 1rem;
+
+    background: white;
+
+    box-shadow:
+        0 1.5rem 4rem rgb(15 23 42 / 20%);
+
+    animation: modalEnter 0.16s ease-out;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 1.25rem 1.25rem 0;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
+    flex-shrink: 0;
+
+    border-radius: 0.75rem;
+
+    background: var(--accent-amber-soft);
+    color: var(--accent-amber);
+
+    font-size: 1.25rem;
+}
+
+.icon.destructive {
+    background: var(--accent-red-soft);
+    color: var(--accent-red);
+}
+
+.closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 0.625rem;
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.closeButton:hover:not(:disabled) {
+    background: var(--bg-app);
+    color: var(--text-primary);
+}
+
+.closeButton:focus-visible,
+.cancelButton:focus-visible,
+.confirmButton:focus-visible {
+    outline: 0.125rem solid var(--accent-blue);
+    outline-offset: 0.125rem;
+}
+
+.closeButton:disabled,
+.cancelButton:disabled,
+.confirmButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+    padding: 1.25rem;
+}
+
+.title {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.message {
+    color: var(--text-secondary);
+
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 0.75rem;
+
+    padding: 0 1.25rem 1.25rem;
+}
+
+.cancelButton,
+.confirmButton {
+    min-width: 6rem;
+
+    padding: 0.625rem 1rem;
+
+    border-radius: 0.625rem;
+
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.cancelButton {
+    border: 1px solid var(--border-subtle);
+
+    background: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: var(--bg-app);
+}
+
+.confirmButton {
+    border: 1px solid var(--accent-blue);
+
+    background: var(--accent-blue);
+    color: white;
+}
+
+.confirmButton:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.destructiveConfirm {
+    border-color: var(--accent-red);
+    background: var(--accent-red);
+}
+
+@keyframes modalEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-0.5rem) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 40rem) {
+    .backdrop {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+    .modal {
+        width: 100%;
+        max-height: 90dvh;
+
+        border-bottom: none;
+        border-radius: 1rem 1rem 0 0;
+
+        animation: modalMobileEnter 0.16s ease-out;
+    }
+
+    .actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancelButton,
+    .confirmButton {
+        width: 100%;
+    }
+}
+
+@keyframes modalMobileEnter {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

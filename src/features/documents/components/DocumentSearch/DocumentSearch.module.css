@@ -1,0 +1,26 @@
+.search {
+    width: 100%;
+
+    border: 1px solid #D9DEE8;
+    border-radius: 0.75rem;
+    outline: none;
+
+    background: var(--bg-panel);
+    color: var(--text-primary);
+
+    font-size: 0.8125rem;
+
+    padding: 0.625rem 0.875rem;
+    min-height: 2.5rem;
+
+    box-sizing: border-box;
+}
+.search::placeholder {
+    font-size: 0.8125rem;
+    color: var(--text-faint);
+}
+.search:focus {
+
+    border-color: var(--primary);
+
+}

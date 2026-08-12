@@ -1,0 +1,265 @@
+.panel {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: min(42rem, 45vw);
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    min-height: 0;
+
+    background: var(--bg-panel);
+
+    box-shadow: -0.5rem 0 2rem rgba(0, 0, 0, 0.12);
+
+    z-index: 100;
+
+    animation: slideDesktop 0.25s ease;
+}
+
+/* --------------------------------
+   Header
+-------------------------------- */
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1rem 1.1rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.title {
+    margin: 0;
+
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+
+    color: var(--text-primary);
+}
+
+.subtitle {
+    margin: 0.3rem 0 0;
+
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.closeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 auto;
+
+    padding: 0;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    background: transparent;
+    color: var(--text-secondary);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.closeButton svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.closeButton:hover {
+    border-color: var(--border);
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* --------------------------------
+   Content
+-------------------------------- */
+
+.content {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding: 1rem;
+}
+
+.sourceCount {
+    margin-bottom: 0.75rem;
+
+    color: var(--text-faint);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.sourceList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* --------------------------------
+   Source card
+-------------------------------- */
+
+.sourceCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+
+    padding: 0.9rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--bg-surface);
+}
+
+.sourceHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.documentName {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+
+    overflow-wrap: anywhere;
+}
+
+.metadata {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+
+    color: var(--text-secondary);
+
+    font-size: 0.7rem;
+    line-height: 1.4;
+}
+
+.metadataSeparator {
+    color: var(--text-faint);
+}
+
+.score {
+    color: var(--text-secondary);
+
+    font-size: 0.7rem;
+    line-height: 1.4;
+}
+
+.score strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.snippet {
+    margin: 0;
+
+    padding: 0.7rem 0.75rem;
+
+    border-left: 0.2rem solid var(--accent-amber-line);
+
+    background: var(--bg-panel);
+
+    color: var(--text-secondary);
+
+    font-size: 0.75rem;
+    line-height: 1.55;
+}
+
+/* --------------------------------
+   Animations
+-------------------------------- */
+@keyframes slideDesktop {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideMobile {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------
+   Responsive
+-------------------------------- */
+
+@media (max-width: 48rem) {
+    .panel {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 92dvh;
+
+        border-radius: 1.25rem 1.25rem 0 0;
+
+        animation: slideMobile 0.25s ease;
+    }
+}
+
+
+@media (max-width: 40rem) {
+    .panel {
+        width: 100%;
+        flex: 1 1 auto;
+
+        border-left: 0;
+        border-top: 1px solid var(--border);
+
+        min-height: 14rem;
+        max-height: 45%;
+    }
+
+    .header {
+        padding: 0.85rem 1rem;
+    }
+
+    .content {
+        padding: 0.85rem 1rem;
+    }
+}

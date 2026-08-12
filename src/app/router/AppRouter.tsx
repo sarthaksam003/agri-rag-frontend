@@ -1,8 +1,8 @@
 import { RootLayout } from "@/app/layouts/RootLayout";
 import { ConversationPage } from "@/features/conversation/pages/ConversationPage";
-import DocumentsPage from "@/features/conversation/pages/DocumentsPage";
-import SessionsPage from "@/features/conversation/pages/SessionsPage";
-import SettingsPage from "@/features/conversation/pages/SettingsPage";
+import DocumentsPage from "@/features/documents/pages/DocumentsPage";
+import SessionPage from "@/features/sessions/pages/SessionsPage";
+import SettingsPage from "@/features/settings/pages/SettingsPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 export function AppRouter() {
@@ -32,7 +32,7 @@ export function AppRouter() {
 
         <Route
           path="/sessions"
-          element={<SessionsPage />}
+          element={<SessionPage />}
         />
 
         <Route

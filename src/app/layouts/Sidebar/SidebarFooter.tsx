@@ -1,14 +1,13 @@
-// import { useConversationStore } from '@/features/conversation/store/conversation.store';
-// import { useSettingsStore } from '@/store/settings.store'
 import { useUserMenuStore } from "@/features/navigation/user-menu.store";
 import styles from "./SidebarFooter.module.css";
 import { HiChevronUp } from 'react-icons/hi2';
 import { useEffect, useRef } from "react";
-// import { cn } from '@/shared/lib/cn';
+import { useSettingsStore } from "@/features/settings/store/settings.store";
+
 export const SidebarFooter = () => {
-    // const { tenantId } = useSettingsStore();
-    // const { ragMode } = useConversationStore();
     const { open, close, toggle } = useUserMenuStore();
+    const { profileName, occupation } = useSettingsStore();
+
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
@@ -46,17 +45,23 @@ export const SidebarFooter = () => {
             >
                 <div className={styles.userCardLayout}>
                     <span className={styles.avatar}>
-                        SS
+                        {profileName
+                            .trim()
+                            .split(/\s+/)
+                            .filter(Boolean)
+                            .slice(0, 2)
+                            .map((part) => part[0].toUpperCase())
+                            .join("")}
                     </span>
 
                     <div className={styles.userInfo}>
 
                         <div className={styles.userName}>
-                            Sarthak Sambharia
+                            {profileName || "User"}
                         </div>
 
                         <div className={styles.userRole}>
-                            Employee
+                            {occupation || "Employee"}
                         </div>
 
                     </div>

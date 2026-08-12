@@ -26,6 +26,7 @@ interface ConversationStore {
 
 
   setStatus: (status: ConversationStatus) => void
+  setMessages: (messages: ChatMessage[]) => void,
 }
 
 export const useConversationStore = create<ConversationStore>((set, get) => ({
@@ -46,6 +47,7 @@ export const useConversationStore = create<ConversationStore>((set, get) => ({
       messages: [],
       sessionId: null,
       error: null,
+      status: "idle",
     }),
   addMessage: (message) =>
     set((state) => ({
@@ -63,7 +65,7 @@ export const useConversationStore = create<ConversationStore>((set, get) => ({
 
 
   setSessionId: (id) => set({ sessionId: id }),
-
+  setMessages: (messages) => set({ messages }),
   setStatus: (status: ConversationStatus) =>
     set({
       status,

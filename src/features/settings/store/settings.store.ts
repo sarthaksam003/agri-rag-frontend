@@ -1,23 +1,45 @@
 import { create } from "zustand";
 
-interface SettingsStore {
-    // Sessions
-    tenantId: string | number | readonly string[] | undefined,
-    maxQueries: number,
-    setTenantId: (
-        id: string
-    ) => void;
+export type RagMode = "simple" | "multi";
 
-    setMaxQueries: (
-        n: number
-    ) => void;
+interface SettingsStore {
+    ragMode: RagMode;
+    maxQueries: number;
+
+    profileName: string;
+    occupation: string;
+
+    setRagMode: (mode: RagMode) => void;
+    setMaxQueries: (queries: number) => void;
+
+    setProfileName: (name: string) => void;
+    setOccupation: (occupation: string) => void;
 }
 
 export const useSettingsStore = create<SettingsStore>((set) => ({
+    ragMode: "simple",
+    maxQueries: 2,
 
-    tenantId: "",
-    maxQueries: 1,
-    setTenantId: (id: string) => set({ tenantId: id }),
-    setMaxQueries: (n: number) => set({ maxQueries: n }),
-})
-);
+    profileName: "Sarthak Sambharia",
+    occupation: "Employee",
+
+    setRagMode: (mode) =>
+        set({
+            ragMode: mode,
+        }),
+
+    setMaxQueries: (queries) =>
+        set({
+            maxQueries: Math.min(6, Math.max(2, queries)),
+        }),
+
+    setProfileName: (name) =>
+        set({
+            profileName: name,
+        }),
+
+    setOccupation: (occupation) =>
+        set({
+            occupation,
+        }),
+}));

@@ -1,0 +1,126 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+
+    box-sizing: border-box;
+
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.row[role="button"] {
+    cursor: pointer;
+}
+
+.row[role="button"]:hover {
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.icon {
+    flex: 0 0 2.25rem;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #8a5f17;
+
+    background: var(--accent-amber-soft);
+    border-radius: 0.5625rem;
+
+    font-size: 1rem;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+}
+
+.title {
+    overflow: hidden;
+
+    color: var(--text-primary);
+
+    font-size: 0.84375rem;
+    font-weight: 500;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.subtitle {
+    margin-top: 0.0625rem;
+
+    color: var(--text-faint);
+
+    font-size: 0.71875rem;
+    font-family: var(--font-mono);
+}
+
+.deleteButton {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5rem;
+
+    color: var(--text-faint);
+
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background-color 0.15s ease;
+}
+
+.deleteButton:hover {
+    color: var(--accent-red);
+    background: var(--accent-red-soft);
+}
+
+.deleteButton:focus-visible {
+    outline: 2px solid var(--accent-amber);
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .row {
+        min-height: 62px;
+        padding: 10px 12px;
+    }
+
+    .icon {
+        flex-basis: 36px;
+
+        width: 36px;
+        height: 36px;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+}

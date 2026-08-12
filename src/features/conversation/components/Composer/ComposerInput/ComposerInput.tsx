@@ -18,7 +18,7 @@ interface ComposerInputProps {
 }
 const ComposerInput = ({ value, onChange, onSend, onVoice, disabled }: ComposerInputProps) => {
     const inputRef = useRef<HTMLTextAreaElement>(null);
-
+    const voiceDisabled = disabled || Boolean(value.trim());
     const handleKeyDown = (
         e: React.KeyboardEvent<HTMLTextAreaElement>
     ) => {
@@ -55,7 +55,7 @@ const ComposerInput = ({ value, onChange, onSend, onVoice, disabled }: ComposerI
                     ref={inputRef}
                 ></textarea>
 
-                <VoiceButton onVoice={onVoice} disabled={disabled} />
+                <VoiceButton onVoice={onVoice}  disabled={voiceDisabled} />
                 <SendButton onSend={onSend} disabled={disabled} />
             </div>
         </div>

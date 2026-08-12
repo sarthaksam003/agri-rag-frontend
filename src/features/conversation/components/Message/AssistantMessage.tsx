@@ -1,19 +1,19 @@
 import type { ChatMessage } from "@/features/conversation/types/message";
+import type { SourceReference } from "@/features/conversation/types/source";
 import logo from "@/assets/logo.png";
 import styles from "./AssistanMessage.module.css";
 import { IoCopyOutline } from "react-icons/io5";
 import { formatTime } from "@/features/conversation/components/Message/UserMessage";
 
 interface AssistantMessageProps {
-
   message: ChatMessage;
   className: string;
-
+  onShowSources: (sources: SourceReference[]) => void;
 }
-
 const AssistantMessage = ({
   message,
-  className
+  className,
+  onShowSources
 }: AssistantMessageProps) => {
   const handleCopy = async () => {
     await navigator.clipboard.writeText(message.content);
@@ -30,6 +30,11 @@ const AssistantMessage = ({
             <button
               type="button"
               className={styles["citation-tab"]}
+              onClick={() => {
+                if (message.sources) {
+                  onShowSources(message.sources);
+                }
+              }}
             >
               <span className={styles["cnum"]}>
                 {message.sources.length}
@@ -52,7 +57,7 @@ const AssistantMessage = ({
               <span></span>
             </span>
             Listen
-          {/* // TODO:
+            {/* // TODO:
           // Invoke the backend TTS endpoint when the Listen button is clicked.
           // Playback state should be managed by audio.store.ts. */}
           </button>

@@ -1,6 +1,7 @@
 import styles from "./MessageList.module.css";
 import { useEffect, useRef } from "react";
 import type { ChatMessage } from "@/features/conversation/types/message";
+import type { SourceReference } from "@/features/conversation/types/source";
 
 import UserMessage from "../Message/UserMessage";
 import AssistantMessage from "../Message/AssistantMessage";
@@ -11,11 +12,12 @@ interface MessageListProps {
   messages: ChatMessage[];
 
   isThinking: boolean;
+  onShowSources: (sources: SourceReference[]) => void;
 
 }
 
 const MessageList = ({
-  messages, isThinking
+  messages, isThinking, onShowSources
 }: MessageListProps) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -51,8 +53,8 @@ const MessageList = ({
               key={message.id}
               message={message}
               className={styles.assistantMessage}
+              onShowSources={onShowSources}
             />
-
           )
 
       )}

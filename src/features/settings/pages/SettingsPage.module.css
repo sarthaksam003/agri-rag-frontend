@@ -1,0 +1,312 @@
+.view {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+    background-color: var(--bg-app);
+}
+
+.page {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: clamp(1.5rem, 3vw, 2.5rem)
+        clamp(1rem, 4vw, 2.5rem)
+        clamp(2rem, 4vw, 3rem);
+}
+
+.pageInner {
+    width: min(100%, 45rem);
+    margin: 0 auto;
+}
+
+.pageHeader {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.pageTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.pageTitle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.pageSub {
+    margin-top: 0.35rem;
+
+    color: var(--text-secondary);
+    font-size: clamp(0.8rem, 1.4vw, 0.875rem);
+    line-height: 1.5;
+}
+
+/* --------------------------------
+   Settings content
+-------------------------------- */
+
+.settingsContent {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.settingsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.sectionTitle {
+    margin: 0;
+
+    color: var(--text-primary);
+    font-size: clamp(0.8rem, 1.4vw, 0.875rem);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* --------------------------------
+   Profile
+-------------------------------- */
+
+.profileGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.settingsField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.settingsLabel {
+    display: block;
+
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.settingsInput {
+    width: 100%;
+    min-width: 0;
+
+    padding: 0.7rem 0.85rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: var(--bg-panel);
+    color: var(--text-primary);
+
+    font: inherit;
+    font-size: 0.875rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.settingsInput::placeholder {
+    color: var(--text-faint);
+}
+
+.settingsInput:focus {
+    border-color: var(--accent-amber-line);
+    box-shadow: 0 0 0 0.15rem var(--accent-amber-line);
+}
+
+.profileActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 0.15rem;
+}
+
+.cancelButton,
+.saveButton {
+    min-width: 7rem;
+
+    padding: 0.6rem 0.9rem;
+
+    border-radius: var(--radius-sm);
+
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.cancelButton {
+    border: 1px solid var(--border);
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+}
+
+.cancelButton:hover:not(:disabled) {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}
+
+.saveButton {
+    border: 1px solid var(--bg-sidebar);
+    background: var(--bg-sidebar);
+    color: var(--text-inverse);
+}
+
+.saveButton:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.cancelButton:disabled,
+.saveButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* --------------------------------
+   RAG mode
+-------------------------------- */
+
+.ragHeading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.ragSelection {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.toggleGroup {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+.toggleBtn {
+    min-width: 0;
+
+    padding: 0.7rem 0.85rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.toggleBtn:hover {
+    border-color: var(--accent-amber-line);
+}
+
+.toggleBtn.active {
+    border-color: var(--bg-sidebar);
+    background: var(--bg-sidebar);
+    color: var(--text-inverse);
+}
+
+.queryField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    margin-top: 0.15rem;
+}
+
+.settingsSlider {
+    width: 100%;
+    margin: 0.25rem 0 0;
+
+    accent-color: var(--accent-amber);
+    cursor: pointer;
+}
+
+.sliderLabels {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 0.05rem;
+
+    color: var(--text-faint);
+    font-size: 0.7rem;
+}
+
+/* --------------------------------
+   Responsive layout
+-------------------------------- */
+
+@media (max-width: 40rem) {
+    .page {
+        padding-inline: 1rem;
+    }
+
+    .profileGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .profileActions {
+        justify-content: stretch;
+    }
+
+    .cancelButton,
+    .saveButton {
+        flex: 1;
+    }
+
+    .ragHeading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .ragSelection {
+        text-align: left;
+    }
+}
+
+@media (max-width: 28rem) {
+    .toggleGroup {
+        grid-template-columns: 1fr;
+    }
+
+    .pageTitle {
+        font-size: 1.2rem;
+    }
+}
