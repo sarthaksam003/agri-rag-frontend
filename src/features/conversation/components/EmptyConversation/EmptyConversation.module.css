@@ -1,6 +1,6 @@
 .logo {
-    width: 100px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
 }
 
 .empty-state {
@@ -14,8 +14,8 @@
 }
 
 .empty-avatar {
-    width: 64px;
-    height: 64px;
+      width: 8rem;
+    height: 8rem;
     border-radius: 20px;
     /* background: linear-gradient(135deg, var(--accent-amber), #C88A2A); */
     display: flex;

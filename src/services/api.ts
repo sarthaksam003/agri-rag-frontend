@@ -3,6 +3,7 @@ import { API_ENDPOINTS, getHeaders, getJsonHeaders } from '../config/api';
 
 const apiClient = axios.create({
   timeout: 120000,
+  withCredentials: true,
 });
 
 // ─── Chat ──────────────────────────────────────────────

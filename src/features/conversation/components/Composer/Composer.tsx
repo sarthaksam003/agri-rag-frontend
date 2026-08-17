@@ -85,6 +85,7 @@ const Composer = ({ value, onChange, onVoiceSend, onSend, setTranscript, disable
           onSend={handleTextSend}
           onVoice={handleVoice}
           disabled={isDisabled}
+          isRecording={state === "recording"}
         />
         <ComposerToolbar onSend={handleTextSend} disabled={isDisabled}
           onAttach={() => { }} onVoice={() => { }} />

@@ -4,19 +4,15 @@ import styles from "./ComposerInput.module.css";
 import { useEffect, useRef } from "react";
 
 interface ComposerInputProps {
-
     value: string;
-
-    onChange(value: string): void;
-
-    onSend(): void;
-
-    onVoice(): void;
-
     disabled?: boolean;
-
+    isRecording?: boolean;
+    onChange(value: string): void;
+    onSend(): void;
+    onVoice(): void;
 }
-const ComposerInput = ({ value, onChange, onSend, onVoice, disabled }: ComposerInputProps) => {
+
+const ComposerInput = ({ value, isRecording, onChange, onSend, onVoice, disabled }: ComposerInputProps) => {
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const voiceDisabled = disabled || Boolean(value.trim());
     const handleKeyDown = (
@@ -55,7 +51,7 @@ const ComposerInput = ({ value, onChange, onSend, onVoice, disabled }: ComposerI
                     ref={inputRef}
                 ></textarea>
 
-                <VoiceButton onVoice={onVoice}  disabled={voiceDisabled} />
+                <VoiceButton onVoice={onVoice}  disabled={voiceDisabled} isRecording={isRecording}/>
                 <SendButton onSend={onSend} disabled={disabled} />
             </div>
         </div>

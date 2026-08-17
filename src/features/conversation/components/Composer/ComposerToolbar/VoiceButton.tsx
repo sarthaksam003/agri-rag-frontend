@@ -4,17 +4,20 @@ import styles from "./ComposerToolbar.module.css";
 
 interface VoiceButtonProps {
   onVoice(): void;
+  isRecording?: boolean;
   disabled?: boolean;
 }
 
 const VoiceButton = ({
-  onVoice,
   disabled,
+  isRecording,
+  onVoice,
 }: VoiceButtonProps) => {
   return (
     <IconButton
       icon={<TiMicrophoneOutline />}
-      className={styles["mic-btn"]}
+      className={`${styles["mic-btn"]} ${isRecording ? styles["recording"] : ""
+        }`}
       id="micBtn"
       title="Record a voice message"
       onClick={onVoice}
