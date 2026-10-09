@@ -1,9 +1,10 @@
-import { IoCloseOutline } from "react-icons/io5";
-
+import { IoCloseOutline, IoDocumentTextOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { useDocumentStore } from "@/features/documents/store/document.store";
 import type { SourceReference } from "@/features/conversation/types/source";
-
+import { getDocuments } from "@/features/documents/services/documents.service";
 import styles from "./SourceInspector.module.css";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 interface SourceInspectorProps {
     sources: SourceReference[];
     onClose: () => void;
@@ -13,19 +14,30 @@ const SourceInspector = ({
     sources,
     onClose,
 }: SourceInspectorProps) => {
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const documents = useDocumentStore(
+        (state) => state.documents
+    );
+
+    const openPreview = useDocumentStore(
+        (state) => state.openPreview
+    );
     return (
         <aside
             className={styles.panel}
-            aria-label="Source Inspector"
+            aria-label={t("sourceInspector.title")}
         >
             <header className={styles.header}>
                 <div>
+
                     <h2 className={styles.title}>
-                        Source Inspector
+                        {t("sourceInspector.title")}
                     </h2>
 
                     <p className={styles.subtitle}>
-                        Sources used to generate this response.
+                        {t("sourceInspector.subtitle")}
                     </p>
                 </div>
 
@@ -33,7 +45,7 @@ const SourceInspector = ({
                     type="button"
                     className={styles.closeButton}
                     onClick={onClose}
-                    aria-label="Close source inspector"
+                    aria-label={t("sourceInspector.close")}
                 >
                     <IoCloseOutline />
                 </button>
@@ -42,51 +54,103 @@ const SourceInspector = ({
             <div className={styles.content}>
                 <div className={styles.sourceCount}>
                     {sources.length}{" "}
-                    {sources.length === 1 ? "source" : "sources"}
+                    {sources.length === 1
+                        ? t("sourceInspector.source")
+                        : t("sourceInspector.sources")}
                 </div>
 
                 <div className={styles.sourceList}>
-                    {sources.map((source) => (
-                        <article
-                            key={source.id}
-                            className={styles.sourceCard}
-                        >
-                            <div className={styles.sourceHeader}>
-                                <h3 className={styles.documentName}>
-                                    {source.documentName}
-                                </h3>
+                    {sources.map((source) => {
+                        console.log("[SourceInspector] source:", source);
 
-                                <div className={styles.metadata}>
-                                    <span>
-                                        Page {source.pageNumber}
-                                    </span>
+                        return (
+                            <article
+                                key={source.id}
+                                className={styles.sourceCard}
+                            >
+                                <div className={styles.sourceHeader}>
+                                    <div className="flex justify-between">
 
-                                    <span
-                                        className={
-                                            styles.metadataSeparator
-                                        }
-                                    >
-                                        ·
-                                    </span>
+                                        <div className={styles.metadata}>
+                                            <h3 className={styles.documentName}>
+                                                {source.documentName}
+                                            </h3>
+                                            <span>
+                                                {t("sourceInspector.page")} {source.pageNumber}
+                                            </span>
 
-                                    <span>
-                                        {source.chunkId}
-                                    </span>
+                                            <span
+                                                className={
+                                                    styles.metadataSeparator
+                                                }
+                                            >
+                                                ·
+                                            </span>
+
+                                            <span>
+                                                {source.chunkId}
+                                            </span>
+                                        </div>
+                                        {source.documentId && (
+                                            <button
+                                                type="button"
+                                                className={styles.viewDocumentButton}
+                                                onClick={async () => {
+                                                    let document = documents.find(
+                                                        (document) => document.id === source.documentId
+                                                    );
+
+                                                    if (!document && source.documentId) {
+                                                        try {
+                                                            const loadedDocuments = await getDocuments();
+
+                                                            document = loadedDocuments.find(
+                                                                (document) => document.id === source.documentId
+                                                            );
+                                                        } catch (error) {
+                                                            console.error(
+                                                                "[SourceInspector] Failed to load documents:",
+                                                                error
+                                                            );
+                                                            return;
+                                                        }
+                                                    }
+
+                                                    if (!document) {
+                                                        console.error(
+                                                            "[SourceInspector] Document not found:",
+                                                            source.documentId
+                                                        );
+                                                        return;
+                                                    }
+
+                                                    openPreview(
+                                                        document,
+                                                        source.pageNumber
+                                                    );
+                                                    navigate("/documents");
+                                                }}
+                                            >
+                                                <IoDocumentTextOutline />
+                                                View PDF
+                                            </button>
+                                        )}
+                                    </div>
+
+                                    <div className={styles.score}>
+                                        {t("sourceInspector.relevance")}:{" "}
+                                        <strong>
+                                            {source.score.toFixed(3)}
+                                        </strong>
+                                    </div>
                                 </div>
-                            </div>
+                                <blockquote className={styles.snippet}>
+                                    {source.snippet}
+                                </blockquote>
 
-                            <div className={styles.score}>
-                                Relevance:{" "}
-                                <strong>
-                                    {source.score.toFixed(3)}
-                                </strong>
-                            </div>
-
-                            <blockquote className={styles.snippet}>
-                                {source.snippet}
-                            </blockquote>
-                        </article>
-                    ))}
+                            </article>
+                        )
+                    })}
                 </div>
             </div>
         </aside>

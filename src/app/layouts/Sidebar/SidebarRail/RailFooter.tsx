@@ -1,20 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./RailFooter.module.css";
 import { useUserMenuStore } from "@/features/navigation/user-menu.store";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { broadcastAuthEvent } from "@/features/auth/hooks/useAuthSync";
 import { authApi } from "@/features/auth/api/apiAuth";
 import { AUTH_QUERY_KEY } from "@/features/auth/hooks/useAuth";
+import { useTranslation } from "@/features/localization/useTranslation";
+import { useSettingsStore } from "@/features/settings/store/settings.store";
+import UserAvatar from "@/shared/components/ui/UserAvatar";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 
 const RailFooter = () => {
     const { open, close, toggle } = useUserMenuStore();
     const ref = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-
+    const { user } = useAuth();
     const [isLoggingOut, setIsLoggingOut] = useState(false);
-
+    const { t } = useTranslation();
+    const { profileName } = useSettingsStore();
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (
@@ -24,6 +29,8 @@ const RailFooter = () => {
                 close();
             }
         }
+
+        document.addEventListener("mousedown", handleClickOutside);
 
         return () =>
             document.removeEventListener(
@@ -66,7 +73,13 @@ const RailFooter = () => {
                     toggle();
                 }}
             >
-                <span className={styles["avatar"]}>SS</span>
+                <UserAvatar
+                    name={profileName}
+                    avatarUrl={user?.profile_picture ?? null}
+                    size={34}
+                    className={styles.avatar}
+
+                />
             </button>
 
             {open && (
@@ -74,11 +87,12 @@ const RailFooter = () => {
                     className={styles.menuLeft}
                     id="railUserMenu"
                 >
-                    <button
+                    <NavLink to="/settings"
                         className={styles["menuItem"]}
+                        onClick={() => close()}
                     >
-                        Profile settings
-                    </button>
+                        {t("common.profileSettings")}
+                    </NavLink>
 
                     <div className={styles["menuDivider"]}></div>
 
@@ -88,8 +102,8 @@ const RailFooter = () => {
                         disabled={isLoggingOut}
                     >
                         {isLoggingOut
-                            ? "Logging out..."
-                            : "Logout"}
+                            ? t("common.loggingOut")
+                            : t("actions.logout")}
                     </button>
                 </div>
             )}

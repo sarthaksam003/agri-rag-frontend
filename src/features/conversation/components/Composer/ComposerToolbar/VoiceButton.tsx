@@ -1,7 +1,7 @@
 import { IconButton } from '@/shared/components/ui/IconButton/IconButton'
 import { TiMicrophoneOutline } from "react-icons/ti";
 import styles from "./ComposerToolbar.module.css";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 interface VoiceButtonProps {
   onVoice(): void;
   isRecording?: boolean;
@@ -13,14 +13,15 @@ const VoiceButton = ({
   isRecording,
   onVoice,
 }: VoiceButtonProps) => {
+  const { t } = useTranslation();
   return (
     <IconButton
       icon={<TiMicrophoneOutline />}
       className={`${styles["mic-btn"]} ${isRecording ? styles["recording"] : ""
         }`}
       id="micBtn"
-      title="Record a voice message"
-      onClick={onVoice}
+      title={t("chat.recordVoiceMessage")}
+       onClick={onVoice}
       disabled={disabled}
     />
   );

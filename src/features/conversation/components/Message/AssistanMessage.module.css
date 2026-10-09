@@ -21,7 +21,8 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    max-width: 78%;
+    min-width: 6rem;
+    max-width: 89%;
 }
 
 .msg.user .msg-body {
@@ -33,6 +34,161 @@
     border-radius: var(--radius-md);
     font-size: 14.5px;
     line-height: 1.55;
+}
+
+/* Markdown response formatting */
+.msg.assistant .msg-bubble p {
+    margin: 0 0 10px;
+}
+
+.msg.assistant .msg-bubble p:last-child {
+    margin-bottom: 0;
+}
+
+/* Display mathematics */
+.msg.assistant .msg-bubble .katex-display {
+    margin: 18px 0;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+}
+
+/* Keep inline mathematics aligned with surrounding text */
+.msg.assistant .msg-bubble .katex {
+    font-size: 1em;
+}
+
+/* Slightly larger display equations */
+.msg.assistant .msg-bubble .katex-display .katex {
+    font-size: 1.1em;
+}
+
+/* Markdown content formatting */
+
+/* Headings */
+.msg.assistant .msg-bubble h1,
+.msg.assistant .msg-bubble h2,
+.msg.assistant .msg-bubble h3,
+.msg.assistant .msg-bubble h4 {
+    color: var(--text-primary);
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 18px 0 8px;
+}
+
+.msg.assistant .msg-bubble h1 {
+    font-size: 1.35em;
+}
+
+.msg.assistant .msg-bubble h2 {
+    font-size: 1.2em;
+}
+
+.msg.assistant .msg-bubble h3 {
+    font-size: 1.1em;
+}
+
+.msg.assistant .msg-bubble h4 {
+    font-size: 1em;
+}
+
+.msg.assistant .msg-bubble h1:first-child,
+.msg.assistant .msg-bubble h2:first-child,
+.msg.assistant .msg-bubble h3:first-child,
+.msg.assistant .msg-bubble h4:first-child {
+    margin-top: 0;
+}
+
+
+/* Lists */
+.msg.assistant .msg-bubble ul,
+.msg.assistant .msg-bubble ol {
+    margin: 6px 0 12px;
+    padding-left: 24px;
+}
+
+.msg.assistant .msg-bubble li {
+    margin: 4px 0;
+    padding-left: 2px;
+}
+
+.msg.assistant .msg-bubble li > ul,
+.msg.assistant .msg-bubble li > ol {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
+/* Blockquotes */
+.msg.assistant .msg-bubble blockquote {
+    margin: 12px 0;
+    padding: 8px 14px;
+    border-left: 3px solid var(--border);
+    color: var(--text-secondary);
+}
+
+
+/* Inline code */
+.msg.assistant .msg-bubble code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+
+/* Code blocks */
+.msg.assistant .msg-bubble pre {
+    margin: 14px 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-app);
+}
+
+.msg.assistant .msg-bubble pre code {
+    display: block;
+    font-size: 0.85em;
+    line-height: 1.55;
+    white-space: pre;
+}
+
+
+/* Tables */
+.msg.assistant .msg-bubble table {
+    width: 100%;
+    margin: 14px 0;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+.msg.assistant .msg-bubble th,
+.msg.assistant .msg-bubble td {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.msg.assistant .msg-bubble th {
+    font-weight: 700;
+    background: var(--bg-app);
+}
+
+
+/* Links */
+.msg.assistant .msg-bubble a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+
+/* Horizontal rules */
+.msg.assistant .msg-bubble hr {
+    margin: 18px 0;
+    border: 0;
+    border-top: 1px solid var(--border);
 }
 
 .msg.assistant .msg-bubble {
@@ -93,7 +249,7 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-top: 2px;
+    margin-top: -4px;
 }
 
 .citation-tab {
@@ -131,6 +287,7 @@
     font-size: 9px;
     font-weight: 700;
     flex-shrink: 0;
+    border: 1px solid var(--accent-amber);
 }
 
 
@@ -167,6 +324,24 @@
     border-color: var(--accent-amber-line);
     color: #8A5F17;
     background: var(--accent-amber-soft);
+    animation: ttsPulse 1.6s ease-in-out infinite;
+}
+
+.tts-btn > svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+@keyframes ttsPulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(230, 164, 37, 0.28);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(230, 164, 37, 0.12);
+    }
 }
 
 .tts-btn .tts-bars {
@@ -222,6 +397,47 @@
 .typing-indicator {
     display: flex;
     align-items: center;
+    gap: 4px;
+    padding: 14px 15px;
+}
+
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-faint);
+    animation: typingBounce 1.2s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes typingBounce {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    30% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+
+/** STYLING FOR THE THINKING STATE OF CHATBOT TAKEN FROM STREAMINGMESSAGE COMPONENT **/
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 4px;
     padding: 14px 15px;
 }

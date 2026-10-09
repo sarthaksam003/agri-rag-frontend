@@ -5,7 +5,7 @@ import { useSessions } from "../hooks/useSessions";
 import type { Session } from "../types/session.types";
 
 import ConfirmationModal from "@/shared/components/ConfirmationModal/ConfirmationModal";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 import styles from "./SessionsPage.module.css";
 import { HiOutlineClock } from "react-icons/hi2";
 import SessionSearch from "@/features/sessions/components/SessionSearch/SessionSearch";
@@ -20,7 +20,7 @@ const SessionsPage = () => {
     refreshSessions,
     removeSession,
   } = useSessions();
-
+  const { t } = useTranslation();
   const [sessionToDelete, setSessionToDelete] =
     useState<Session | null>(null);
   const navigate = useNavigate();
@@ -62,20 +62,19 @@ const SessionsPage = () => {
               </span>
 
               <h1 className={styles.title}>
-                Sessions
+                {t("sessions.title")}
               </h1>
             </div>
 
             <p className={styles.description}>
-              Session titles below are illustrative
-              while conversations are using mock data.
+              {t("sessions.description")}
             </p>
           </div>
         </header>
 
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>
-            Recent sessions
+            {t("sessions.recentSessions")}
           </h2>
 
           <button
@@ -95,8 +94,8 @@ const SessionsPage = () => {
             </span>
 
             {isRefreshing
-              ? "Refreshing..."
-              : "Refresh"}
+              ? t("sessions.refreshing")
+              : t("sessions.refresh")}
           </button>
         </div>
         <SessionSearch
@@ -114,14 +113,16 @@ const SessionsPage = () => {
 
       <ConfirmationModal
         open={sessionToDelete !== null}
-        title="Delete session?"
+        title={t("sessions.deleteTitle")}
         message={
           sessionToDelete
-            ? `Are you sure you want to delete "${sessionToDelete.title}"? This action cannot be undone.`
+            ? t("sessions.deleteMessage", {
+              title: sessionToDelete.title,
+            })
             : ""
         }
-        confirmLabel="Delete"
-        cancelLabel="Cancel"
+        confirmLabel={t("actions.delete")}
+        cancelLabel={t("actions.cancel")}
         destructive
         onConfirm={handleDeleteConfirm}
         onCancel={handleDeleteCancel}

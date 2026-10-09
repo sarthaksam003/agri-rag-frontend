@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 import DocumentList from "@/features/documents/components/DocumentList/DocumentList";
 import { useDocuments } from "../../hooks/useDocuments";
 import styles from "./DocumentManager.module.css";
@@ -10,7 +10,6 @@ import UploadZone from "@/features/documents/components/UploadZone/UploadZone";
 import ConfirmationModal from "@/shared/components/ConfirmationModal/ConfirmationModal";
 
 import type { DocumentFile } from "@/features/documents/types/document";
-import { useToast } from "@/shared/components/hooks/useToast";
 
 type DeleteTarget =
     | {
@@ -32,7 +31,7 @@ const DocumentManager = () => {
         removeDocument,
         clearDocuments,
     } = useDocuments();
-    const { showToast } = useToast();
+    const { t } = useTranslation();
     const [deleteTarget, setDeleteTarget] =
         useState<DeleteTarget>(null);
 
@@ -59,41 +58,29 @@ const DocumentManager = () => {
         setDeleteTarget(null);
     };
 
-    const handleConfirmDelete = () => {
+    const handleConfirmDelete = async () => {
         if (!deleteTarget) {
             return;
         }
 
-        if (deleteTarget.type === "document") {
-            const filename =
-                deleteTarget.document.filename;
+        try {
+            if (deleteTarget.type === "document") {
+                await removeDocument(
+                    deleteTarget.document.id,
+                );
+            } else {
+                await clearDocuments();
+            }
 
-            removeDocument(
-                deleteTarget.document.id
-            );
-
-            showToast(
-                `"${filename}" deleted successfully.`,
-                {
-                    type: "success",
-                }
-            );
-        } else {
-            const count = documents.length;
-
-            clearDocuments();
-
-            showToast(
-                `${count} document${count === 1 ? "" : "s"
-                } deleted successfully.`,
-                {
-                    type: "success",
-                }
+            setDeleteTarget(null);
+        } catch (error) {
+            console.error(
+                "Failed to delete document:",
+                error,
             );
         }
-
-        setDeleteTarget(null);
     };
+    
     const isDeleteAll =
         deleteTarget?.type === "all";
 
@@ -107,7 +94,7 @@ const DocumentManager = () => {
 
             <div className={styles.header}>
                 <h2>
-                    Ingested Documents (
+                    {t("documents.ingestedDocuments")} (
                     {filteredDocuments.length}
                     )
                 </h2>
@@ -132,20 +119,24 @@ const DocumentManager = () => {
                 open={deleteTarget !== null}
                 title={
                     isDeleteAll
-                        ? "Delete all documents?"
-                        : "Delete document?"
+                        ? t("documents.deleteAllDocumentsTitle")
+                        : t("documents.deleteDocumentTitle")
                 }
                 message={
                     isDeleteAll
-                        ? `Are you sure you want to delete all ${documents.length} documents? This action cannot be undone.`
-                        : `Are you sure you want to delete "${deleteTarget?.document.filename}"? This action cannot be undone.`
+                        ? t("documents.deleteAllDocumentsMessage", {
+                            count: documents.length,
+                        })
+                        : t("documents.deleteDocumentMessage", {
+                            filename: deleteTarget?.document.filename ?? "",
+                        })
                 }
                 confirmLabel={
                     isDeleteAll
-                        ? "Delete all"
-                        : "Delete"
+                        ? t("actions.deleteAll")
+                        : t("actions.delete")
                 }
-                cancelLabel="Cancel"
+                cancelLabel={t("actions.cancel")}
                 destructive
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}

@@ -9,12 +9,12 @@ import {
     deleteSession,
     getSessions,
 } from "../services/session.service";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 import { useToast } from "@/shared/components/hooks/useToast";
 
 export function useSessions() {
     const { showToast } = useToast();
-
+    const { t } = useTranslation();
     const [sessions, setSessions] = useState<Session[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -34,7 +34,7 @@ export function useSessions() {
                 setSessions(result);
             } catch {
                 showToast(
-                    "Unable to load sessions. Please try again.",
+                    t("notifications.sessionDeleteFailed"),
                     {
                         type: "error",
                     }
@@ -79,14 +79,14 @@ export function useSessions() {
                 );
 
                 showToast(
-                    "Session deleted successfully.",
+                    t("notifications.sessionDeleted"),
                     {
                         type: "success",
                     }
                 );
             } catch {
                 showToast(
-                    "Unable to delete session. Please try again.",
+                    t("notifications.sessionDeleteFailed"),
                     {
                         type: "error",
                     }
@@ -95,7 +95,7 @@ export function useSessions() {
                 throw new Error("Failed to delete session");
             }
         },
-        [showToast]
+        [showToast, t]
     );
 
     return {

@@ -1,45 +1,56 @@
 import { create } from "zustand";
-
-export type RagMode = "simple" | "multi";
+import { persist } from "zustand/middleware";
+import type { SupportedLanguage } from "@/features/settings/constants/languages";
 
 interface SettingsStore {
-    ragMode: RagMode;
-    maxQueries: number;
 
     profileName: string;
     occupation: string;
+    // displayPicture: string | null;
 
-    setRagMode: (mode: RagMode) => void;
-    setMaxQueries: (queries: number) => void;
+    language: SupportedLanguage;
+
+    setLanguage: (language: SupportedLanguage) => void;
+
 
     setProfileName: (name: string) => void;
     setOccupation: (occupation: string) => void;
+    // setDisplayPicture: (picture: string | null) => void;
 }
 
-export const useSettingsStore = create<SettingsStore>((set) => ({
-    ragMode: "simple",
-    maxQueries: 2,
+export const useSettingsStore = create<SettingsStore>()(
+    persist(
+        (set) => ({
 
-    profileName: "Sarthak Sambharia",
-    occupation: "Employee",
+            profileName: "Sarthak Sambharia",
+            occupation: "Employee",
+            // displayPicture: null,
 
-    setRagMode: (mode) =>
-        set({
-            ragMode: mode,
+            language: "en",
+
+            setLanguage: (language) =>
+                set({
+                    language: language,
+                }),
+
+
+            setProfileName: (name) =>
+                set({
+                    profileName: name,
+                }),
+
+            setOccupation: (occupation) =>
+                set({
+                    occupation,
+                }),
+
+            // setDisplayPicture: (picture) =>
+            //     set({
+            //         displayPicture: picture,
+            //     }),
         }),
-
-    setMaxQueries: (queries) =>
-        set({
-            maxQueries: Math.min(6, Math.max(2, queries)),
-        }),
-
-    setProfileName: (name) =>
-        set({
-            profileName: name,
-        }),
-
-    setOccupation: (occupation) =>
-        set({
-            occupation,
-        }),
-}));
+        {
+            name: "agrirag-settings",
+        },
+    ),
+);

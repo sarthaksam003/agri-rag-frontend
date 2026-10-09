@@ -6,6 +6,7 @@ interface DocumentPreviewPanelProps {
   open: boolean;
   title?: string;
   onClose: () => void;
+  onDownload?: () => void;
   children: React.ReactNode;
 }
 
@@ -13,9 +14,9 @@ const DocumentPreviewPanel = ({
   open,
   title,
   onClose,
+  onDownload,
   children,
 }: DocumentPreviewPanelProps) => {
-
   useEffect(() => {
 
     if (!open)
@@ -67,8 +68,8 @@ const DocumentPreviewPanel = ({
         <DocumentPreviewPanelHeader
           title={title}
           onClose={onClose}
+          onDownload={onDownload}
         />
-
         <div className={styles.content}>
 
           {children}

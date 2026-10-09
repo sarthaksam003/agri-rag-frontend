@@ -9,7 +9,7 @@
 
     padding: 11px;
 
-    border: none;
+    border: 1px solid var(--accent-amber);
 
     border-radius: var(--radius-sm);
 

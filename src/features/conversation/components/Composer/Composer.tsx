@@ -3,24 +3,36 @@ import ComposerInput from '@/features/conversation/components/Composer/ComposerI
 import styles from "./Composer.module.css";
 import RecordingBanner from '@/features/conversation/components/Composer/RecordingBanner/RecordingBanner';
 import { useRecordingStore } from '@/features/voice/store/recording.store';
+import { useAudioRecorder } from '@/hooks/useAudioRecorder';
+import TTSPlayer from '@/features/conversation/components/Composer/TTSPlayer/TTSPlayer';
+import { useAudioStore } from '@/features/voice/store/audio.store';
+import { useTranslation } from "@/features/localization/useTranslation";
+import { useToast } from "@/shared/components/hooks/useToast";
 
 interface ComposerProps {
-
   value: string;
-
   onChange(value: string): void;
-
   onSend(text: string): void | Promise<void>;
-
-  onVoiceSend(text: string): void | Promise<void>;
-
-  setTranscript(text: string): void;
-
+  onVoiceSend(audio: Blob): Promise<string>;
+  onStop(): void;
+  showStop?: boolean;
   disabled: boolean;
-
+  waitingForResponse?: boolean;
 }
 
-const Composer = ({ value, onChange, onVoiceSend, onSend, setTranscript, disabled }: ComposerProps) => {
+const Composer = ({
+  value,
+  onChange,
+  onVoiceSend,
+  onSend,
+  onStop,
+  showStop = false,
+  disabled,
+  waitingForResponse = false,
+}: ComposerProps) => {
+  const { isAudioPlayerOpen } = useAudioStore();
+  const { t } = useTranslation();
+  const { showToast } = useToast();
   const {
     state,
     duration,
@@ -30,68 +42,125 @@ const Composer = ({ value, onChange, onVoiceSend, onSend, setTranscript, disable
     finishTranscription,
   } = useRecordingStore();
 
+  const {
+    startRecording,
+    stopRecording,
+    cancelRecording,
+    audioLevel,
+  } = useAudioRecorder();
 
-  const handleVoice = () => {
-    if (state !== "idle")
+  const handleVoice = async () => {
+    if (state !== "idle" || disabled) {
       return;
+    }
 
-    start();
+    const started = await startRecording();
+
+    if (started) {
+      start();
+
+      showToast(t("notifications.recordingStarted"), {
+        type: "info",
+      });
+    }
   };
 
   const isDisabled =
     disabled ||
     state !== "idle";
 
-  const handleRecordingConfirm = () => {
-
+  const handleRecordingConfirm = async () => {
+    if (state !== "recording") {
+      return;
+    }
+    showToast(t("notifications.recordingConfirmed"), {
+      type: "info",
+    });
     beginTranscription();
 
-    setTimeout(() => {
+    try {
+      const audioBlob = await stopRecording();
 
-      const transcript =
-        "How much fertilizer should I use for paddy cultivation?";
+      if (!audioBlob || audioBlob.size === 0) {
+        console.error("No audio was recorded.");
+        finishTranscription();
+        return;
+      }
 
-      setTranscript(transcript);
+      console.log(
+        "Recorded audio:",
+        audioBlob.size,
+        "bytes",
+        audioBlob.type
+      );
+
+      const transcribedText = await onVoiceSend(audioBlob);
+
 
       finishTranscription();
+      if (transcribedText.trim()) {
+        onChange(transcribedText);
+      }
+    } catch (error) {
+      console.error("Failed to process voice recording:", error);
+      finishTranscription();
+    }
+  };
 
-      onVoiceSend(transcript);
-
-      onChange("");
-    }, 1500);
-
+  const handleRecordingCancel = () => {
+    cancelRecording();
+    cancel();
   };
 
   const handleTextSend = () => {
-
     const text = value.trim();
 
-    if (!text)
+    if (!text) {
       return;
+    }
 
     onSend(text);
-
     onChange("");
-
   };
 
   return (
     <div className={styles['composer-wrap']}>
-      {state !== "idle" && <RecordingBanner onConfirm={handleRecordingConfirm} onCancel={cancel} state={state} duration={duration} />}
+
+      {isAudioPlayerOpen && <TTSPlayer />}
+
+      {state !== "idle" && (
+        <RecordingBanner
+          onConfirm={handleRecordingConfirm}
+          onCancel={handleRecordingCancel}
+          state={state}
+          duration={duration}
+          audioLevel={audioLevel}
+        />
+      )}
+
       <div className={styles.composer}>
+
         <ComposerInput
           value={value}
           onChange={onChange}
           onSend={handleTextSend}
+          onStop={onStop}
           onVoice={handleVoice}
           disabled={isDisabled}
+          waitingForResponse={waitingForResponse}
+          showStop={showStop}
           isRecording={state === "recording"}
         />
-        <ComposerToolbar onSend={handleTextSend} disabled={isDisabled}
-          onAttach={() => { }} onVoice={() => { }} />
+
+        <ComposerToolbar
+          onSend={handleTextSend}
+          disabled={isDisabled}
+          onAttach={() => { }}
+          onVoice={() => { }}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Composer
+export default Composer;

@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 import { FiAlertTriangle, FiX } from "react-icons/fi";
 
 import styles from "./ConfirmationModal.module.css";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 interface ConfirmationModalProps {
     open: boolean;
 
@@ -47,7 +47,7 @@ const ConfirmationModal = ({
 
     const previouslyFocusedElement =
         useRef<HTMLElement | null>(null);
-
+    const { t } = useTranslation();
     useEffect(() => {
         if (!open) {
             return;
@@ -110,36 +110,43 @@ const ConfirmationModal = ({
                         ? "confirmation-modal-description"
                         : undefined
                 }
+            ><button
+                type="button"
+                className={styles.closeButton}
+                onClick={onCancel}
+                disabled={isLoading}
+                aria-label={t("common.closeConfirmationDialog")}
             >
-                <div className={styles.header}>
-                    <div
-                        className={`${styles.icon} ${destructive
-                                ? styles.destructive
-                                : ""
-                            }`}
-                        aria-hidden="true"
-                    >
-                        <FiAlertTriangle />
+                    <FiX />
+                </button>
+                <div className="flex items-center justify-between px-2">
+
+                    <div className={styles.header}>
+                        {title === "Adjust picture" ? "" : (
+                            <div
+                                className={`${styles.icon} ${destructive
+                                    ? styles.destructive
+                                    : ""
+                                    }`}
+                                aria-hidden="true"
+                            >
+                                <FiAlertTriangle />
+                            </div>)}
+                        <div>
+
+                            <h2
+                                id="confirmation-modal-title"
+                                className={styles.title}
+                            >
+                                {title}
+                            </h2>
+                        </div>
                     </div>
 
-                    <button
-                        type="button"
-                        className={styles.closeButton}
-                        onClick={onCancel}
-                        disabled={isLoading}
-                        aria-label="Close confirmation dialog"
-                    >
-                        <FiX />
-                    </button>
+
                 </div>
 
                 <div className={styles.body}>
-                    <h2
-                        id="confirmation-modal-title"
-                        className={styles.title}
-                    >
-                        {title}
-                    </h2>
 
                     {message && (
                         <div
@@ -165,14 +172,14 @@ const ConfirmationModal = ({
                         ref={confirmButtonRef}
                         type="button"
                         className={`${styles.confirmButton} ${destructive
-                                ? styles.destructiveConfirm
-                                : ""
+                            ? styles.destructiveConfirm
+                            : ""
                             }`}
                         onClick={onConfirm}
                         disabled={isLoading}
                     >
                         {isLoading
-                            ? "Please wait..."
+                            ? t("common.pleaseWait")
                             : confirmLabel}
                     </button>
                 </div>

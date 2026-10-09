@@ -1,14 +1,8 @@
 .header {
     padding: 18px;
+    
 }
 
-.brand {
-    display: flex;
-    flex: 1;
-
-    align-items: center;
-    gap: 12px;
-}
 
 .brandInfo {
     display: flex;
@@ -23,7 +17,7 @@
     font-weight: 600;
     font-size: 16.5px;
     letter-spacing: 0.2px;
-    color: var(--text-inverse)
+    color: var(--text-inverse);
 }
 
 .brandSub {
@@ -38,4 +32,40 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    position: relative
+}
+
+.brand {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1rem;
+}
+
+.closeButton {
+    position: absolute;
+    right: -1rem;
+    top: -2rem;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.mobileCloseButton {
+    display: none;
+}
+
+@media (max-width: 40rem) {
+    .header {
+        padding: 0.75rem 1rem;
+    }
+
+    .closeButton {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        flex-shrink: 0;
+    }
+
 }

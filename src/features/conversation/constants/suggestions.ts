@@ -1,23 +1,25 @@
-export const SUGGESTIONS = [
+import type { TranslationKey } from "@/features/localization/useTranslation";
 
+export interface Suggestion {
+    id: string;
+    translationKey: TranslationKey;
+}
+
+export const SUGGESTIONS: Suggestion[] = [
     {
         id: "fertilizer",
-        prompt: "What's the recommended fertilizer schedule for paddy?"
+        translationKey: "suggestions.fertilizer",
     },
-
     {
         id: "blight",
-        prompt: "How do I identify early blight in tomato crops?"
+        translationKey: "suggestions.blight",
     },
-
     {
         id: "irrigation",
-        prompt: "What's the ideal irrigation interval for wheat this season?"
+        translationKey: "suggestions.irrigation",
     },
-
     {
         id: "summary",
-        prompt: "Summarize the pest control guidelines from my uploaded documents."
-    }
-
+        translationKey: "suggestions.summary",
+    },
 ];

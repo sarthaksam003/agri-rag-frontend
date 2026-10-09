@@ -1,4 +1,6 @@
 import styles from "./PdfToolbar.module.css";
+import { useTranslation } from "@/features/localization/useTranslation";
+import { FaChevronUp, FaChevronDown, FaMinus, FaPlus } from "react-icons/fa";
 
 interface PdfToolbarProps {
 
@@ -8,7 +10,13 @@ interface PdfToolbarProps {
 
     onZoomOut: () => void;
 
-    onDownload: () => void;
+
+    searchQuery: string;
+    searchMatchCount: number;
+    searchMatchIndex: number;
+    onSearchChange: (query: string) => void;
+    onPreviousMatch: () => void;
+    onNextMatch: () => void;
 
 }
 
@@ -16,33 +24,69 @@ const PdfToolbar = ({
     scale,
     onZoomIn,
     onZoomOut,
-    onDownload,
+    searchQuery,
+    searchMatchCount,
+    searchMatchIndex,
+    // onSearchChange,
+    onPreviousMatch,
+    onNextMatch
 }: PdfToolbarProps) => {
-
+    const { t } = useTranslation();
     return (
 
         <div className={styles.toolbar}>
 
-            <div className={styles.group}>
+            <div className={styles.searchGroup}>
+                {/* <input
+                    type="search"
+                    value={searchQuery}
+                    onChange={(event) =>
+                        onSearchChange(event.target.value)
+                    }
+                    placeholder={t("documents.searchPdfPlaceholder")}
+                    aria-label={t("documents.searchPdf")}
+                    className={styles.searchInput}
+                /> */}
 
-                <button
-                    type="button"
-                    onClick={onDownload}
-                >
-                    Download
-                </button>
+                {searchQuery.trim() && (
+                    <>
+                        <span className={styles.searchCount}>
+                            {searchMatchCount > 0
+                                ? `${searchMatchIndex + 1}/${searchMatchCount}`
+                                : t("documents.noMatches")}
+                        </span>
 
+                        <button
+                            type="button"
+                            onClick={onPreviousMatch}
+                            disabled={searchMatchCount === 0}
+                            aria-label={t("documents.previousMatch")}
+                            className="cursor-pointer"
+                        >
+                            <FaChevronUp />
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={onNextMatch}
+                            disabled={searchMatchCount === 0}
+                            aria-label={t("documents.nextMatch")}
+                            className="cursor-pointer"
+                        >
+                            <FaChevronDown />
+                        </button>
+                    </>
+                )}
             </div>
-
             <div className={styles.group}>
 
                 <button
                     type="button"
                     onClick={onZoomOut}
                     disabled={scale <= 0.6}
-                    aria-label="Zoom out"
+                    aria-label={t("documents.zoomOut")}
                 >
-                    −
+                    <FaMinus />
                 </button>
 
                 <span className={styles.zoom}>
@@ -53,9 +97,9 @@ const PdfToolbar = ({
                     type="button"
                     onClick={onZoomIn}
                     disabled={scale >= 3}
-                    aria-label="Zoom in"
+                    aria-label={t("documents.zoomIn")}
                 >
-                    +
+                    <FaPlus />
                 </button>
 
             </div>

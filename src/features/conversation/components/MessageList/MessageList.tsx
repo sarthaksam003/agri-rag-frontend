@@ -5,30 +5,35 @@ import type { SourceReference } from "@/features/conversation/types/source";
 
 import UserMessage from "../Message/UserMessage";
 import AssistantMessage from "../Message/AssistantMessage";
-import StreamingMessage from "@/features/conversation/components/Message/StreamingMessage";
+// import StreamingMessage from "@/features/conversation/components/Message/StreamingMessage";
 
 interface MessageListProps {
-
   messages: ChatMessage[];
-
-  isThinking: boolean;
+  isThinking?: boolean;
   onShowSources: (sources: SourceReference[]) => void;
-
+  onEditMessage?: (message: ChatMessage) => void;
+  onResendMessage?: (
+    message: ChatMessage,
+    editedContent: string,
+  ) => void;
+  canResend?: boolean;
 }
 
 const MessageList = ({
-  messages, isThinking, onShowSources
+  messages,
+  onEditMessage,
+  onResendMessage,
+  canResend,
+  onShowSources,
 }: MessageListProps) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-
     bottomRef.current?.scrollIntoView({
-
       behavior: "smooth",
-
     });
-
-  }, [messages]);
+  }, [messages,
+    // isThinking
+  ]);
   return (
 
     <div className={styles.list}>
@@ -43,6 +48,9 @@ const MessageList = ({
               key={message.id}
               message={message}
               className={styles.userMessage}
+              onEdit={onEditMessage}
+              onResend={onResendMessage}
+              canResend={canResend}
             />
 
           )
@@ -58,7 +66,7 @@ const MessageList = ({
           )
 
       )}
-      {isThinking && <StreamingMessage />}
+      {/* {isThinking && <StreamingMessage />} */}
       <div ref={bottomRef} />
     </div>
 

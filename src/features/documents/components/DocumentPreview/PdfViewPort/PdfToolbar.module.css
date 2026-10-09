@@ -37,6 +37,7 @@
     align-items: center;
 
     gap: 0.5rem;
+    
 
 }
 
@@ -81,3 +82,50 @@
     color: var(--text-secondary);
 
 }
+
+.searchGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.searchInput {
+    width: 16rem;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-primary);
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.7rem;
+    outline: none;
+}
+
+.searchInput:focus {
+    border-color: var(--text-secondary);
+}
+
+.searchCount {
+    min-width: 3.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 40rem) {
+    .searchInput {
+        width: 10rem;
+    }
+
+    .toolbar {
+        gap: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+}
+
+.searchInput::-webkit-search-cancel-button {
+  cursor: pointer;
+  color: black!important;
+  background-color: black!important;
+  fill: black!important;
+}
+
+

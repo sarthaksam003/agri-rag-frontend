@@ -20,6 +20,7 @@
     z-index: 100;
 
     animation: slideDesktop 0.25s ease;
+    border-left: 1px solid var(--border);
 }
 
 /* --------------------------------
@@ -147,17 +148,22 @@
 .documentName {
     margin: 0;
 
+    min-width: 0;
+    flex: 1 1 auto;
+
     color: var(--text-primary);
 
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.4;
 
-    overflow-wrap: anywhere;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .metadata {
-    display: flex;
+    /* display: flex; */
     flex-wrap: wrap;
     align-items: center;
     gap: 0.3rem;
@@ -262,4 +268,52 @@
     .content {
         padding: 0.85rem 1rem;
     }
+}
+
+.viewDocumentButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+
+    flex: 0 0 auto;
+
+    padding: 0.35rem 0.6rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: var(--bg-surface);
+    color: var(--text-primary);
+
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.viewDocumentButton:hover {
+    border-color: var(--accent-amber-line);
+    background: var(--bg-hover);
+}
+
+.viewDocumentButton svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.documentHeaderRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    min-width: 0;
 }

@@ -18,7 +18,7 @@ export default function SidebarPanel() {
 
             <div className={styles.spacer} />
 
-            <SidebarFooter />
+            {!isCollapsed && <SidebarFooter />}
 
         </aside>
     );

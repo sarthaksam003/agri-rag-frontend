@@ -1,0 +1,98 @@
+.player {
+    max-width: 760px;
+    margin: 0 auto 10px;
+    display: grid;
+    grid-template-columns: auto minmax(120px, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--accent-amber-line);
+    border-radius: var(--radius-md);
+    background: var(--accent-amber-soft);
+}
+
+.identity,
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.label {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.time {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    border-radius: 50%;
+    background: var(--accent-amber);
+}
+
+.progress {
+    width: 100%;
+    accent-color: var(--accent-amber);
+    cursor: pointer;
+}
+
+.controls {
+    justify-content: flex-end;
+}
+
+.controls button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 5px 7px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--bg-panel);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.controls button:hover {
+    border-color: var(--accent-amber-line);
+}
+
+.playButton {
+    border-color: var(--bg-sidebar) !important;
+    background: var(--bg-sidebar) !important;
+    color: var(--text-inverse) !important;
+}
+
+.speedButton {
+    min-width: 42px !important;
+    font: inherit;
+    font-size: 11px;
+}
+
+@media (max-width: 640px) {
+    .player {
+        grid-template-columns: 1fr auto;
+    }
+
+    .progress {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .controls {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        justify-content: flex-end;
+    }
+}

@@ -21,6 +21,8 @@ export interface DocumentFile {
 
     status: DocumentStatus;
 
+    progress?: number;
+
     fileUrl?: string;
 
 }

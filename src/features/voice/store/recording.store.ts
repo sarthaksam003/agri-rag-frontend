@@ -38,12 +38,12 @@ export const useRecordingStore = create<RecordingStore>((set) => ({
             duration: state.duration + 1,
         })),
     beginTranscription: () =>
-        set((state) => ({
+        set(() => ({
             state: "transcribing",
         })),
 
     finishTranscription: () =>
-        set((state) => ({
+        set(() => ({
             state: "idle",
         })),
 

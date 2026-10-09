@@ -3,6 +3,7 @@ import styles from "./DocumentCard.module.css";
 import { FaRegFilePdf } from "react-icons/fa6";
 import { FiTrash2 } from "react-icons/fi";
 import { useDocumentPreview } from "@/features/documents/hooks/useDocumentPreview";
+import { useTranslation } from "@/features/localization/useTranslation";
 
 interface DocumentCardProps {
     document: DocumentFile;
@@ -14,6 +15,7 @@ const DocumentCard = ({
     onDelete,
 }: DocumentCardProps) => {
     const { openPreview } = useDocumentPreview();
+    const { t } = useTranslation();
 
     const handleDelete = (
         event: React.MouseEvent<HTMLButtonElement>
@@ -34,11 +36,14 @@ const DocumentCard = ({
 
             <div className={styles.info}>
                 <div className={styles.name}>
-                    {document.filename}
+                    <span className={styles.nameText}>
+                        {document.filename}
+                    </span>
                 </div>
 
                 <div className={styles.meta}>
-                    {document.chunkCount} chunks
+                    {document.chunkCount}{" "}
+                    {t("documents.chunks")}
                 </div>
             </div>
 
@@ -46,8 +51,10 @@ const DocumentCard = ({
                 type="button"
                 className={styles["deleteButton"]}
                 onClick={handleDelete}
-                aria-label={`Delete ${document.filename}`}
-                title="Delete document"
+                aria-label={t("documents.deleteDocumentAriaLabel", {
+                    filename: document.filename,
+                })}
+                title={t("documents.deleteDocumentTooltip")}
             >
                 <FiTrash2 />
             </button>

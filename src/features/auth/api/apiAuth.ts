@@ -8,6 +8,7 @@ export interface CurrentUser {
     is_active: boolean;
     is_superuser: boolean;
     is_verified: boolean;
+    profile_picture: string | null;
 }
 
 export const authApi = {
@@ -36,5 +37,21 @@ export const authApi = {
                 withCredentials: true,
             }
         );
+    },
+
+    async updateProfilePicture(
+        profilePicture: string | null,
+    ): Promise<CurrentUser> {
+        const response = await axios.put<CurrentUser>(
+            `${API_BASE_URL}/api/auth/profile-picture`,
+            {
+                profile_picture: profilePicture,
+            },
+            {
+                withCredentials: true,
+            },
+        );
+
+        return response.data;
     },
 };

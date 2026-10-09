@@ -1,11 +1,11 @@
 export interface SourceReference {
     id: string;
 
-    documentId: string;
+    documentId?: string;
 
     documentName: string;
 
-    pageNumber: number;
+    pageNumber?: number;
 
     chunkId: string;
 

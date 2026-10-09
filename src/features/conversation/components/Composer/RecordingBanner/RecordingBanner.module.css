@@ -1,9 +1,9 @@
 .recording-bar {
     max-width: 760px;
     margin: 0 auto 10px;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) minmax(280px, 420px) minmax(160px, 1fr);
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
     background: var(--accent-red-soft);
     border: 1px solid #F2C2B6;
@@ -87,12 +87,83 @@
     display: flex;
     gap: 12px;
     align-items: center;
+    justify-self: start;
 }
 
 .recording-bar-btn-layout {
     display: flex;
     /* justify-content: center; */
     align-items: center;
+    justify-self: end;
+    flex-shrink: 0;
+}
+
+.waveform {
+    --audio-level: 0;
+    width: 100%;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    overflow: hidden;
+    opacity: .5;
+    transition: opacity .16s ease;
+}
+
+.waveform-hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.waveform-bar {
+    width: 5px;
+    flex: 0 0 5px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #D6553F 0%, #F09A88 100%);
+    transform: scaleY(calc(.7 + (var(--audio-level) * .45)));
+    transform-origin: center;
+    transition: transform .08s ease, opacity .12s ease;
+}
+
+.waveform.speaking {
+    opacity: 1;
+}
+
+.waveform.speaking .waveform-bar {
+    animation: waveformPulse .72s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(2n) {
+    height: 11px;
+    animation-delay: -.14s;
+}
+
+.waveform-bar:nth-child(3n) {
+    height: 15px;
+    animation-delay: -.28s;
+}
+
+.waveform-bar:nth-child(4n) {
+    height: 13px;
+    animation-delay: -.38s;
+}
+
+.waveform-bar:nth-child(5n) {
+    height: 18px;
+    animation-delay: -.48s;
+}
+
+@keyframes waveformPulse {
+    0%,
+    100% {
+        transform: scaleY(calc(.65 + (var(--audio-level) * .35)));
+    }
+
+    50% {
+        transform: scaleY(calc(.9 + (var(--audio-level) * .45)));
+    }
 }
 
 .rec-confirm {
@@ -111,6 +182,29 @@
     cursor: pointer;
     transition: border-color .15s ease, color .15s ease, background .15s ease;
 
+}
+
+@media (max-width: 640px) {
+    .recording-bar {
+        align-items: stretch;
+        grid-template-columns: 1fr auto;
+    }
+
+    .waveform {
+        grid-column: 1 / -1;
+        order: 3;
+        min-width: 0;
+        height: 26px;
+    }
+
+    .recording-bar-labels-layout,
+    .recording-bar-btn-layout {
+        flex: 1 1 auto;
+    }
+
+    .recording-bar-btn-layout {
+        justify-content: flex-end;
+    }
 }
 
 .rec-confirm:hover {

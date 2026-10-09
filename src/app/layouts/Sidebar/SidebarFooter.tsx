@@ -1,22 +1,26 @@
 import { useUserMenuStore } from "@/features/navigation/user-menu.store";
 import styles from "./SidebarFooter.module.css";
-import { HiChevronUp } from "react-icons/hi2";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { broadcastAuthEvent } from "@/features/auth/hooks/useAuthSync";
 import { authApi } from "@/features/auth/api/apiAuth";
 import { AUTH_QUERY_KEY } from "@/features/auth/hooks/useAuth";
-
+import { useSettingsStore } from "@/features/settings/store/settings.store";
+import UserAvatar from "@/shared/components/ui/UserAvatar";
+import { useTranslation } from "@/features/localization/useTranslation";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 export const SidebarFooter = () => {
     const { open, close, toggle } = useUserMenuStore();
-
+    const { t } = useTranslation();
     const ref = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const queryClient = useQueryClient();
+    const { user } = useAuth();
 
     const [isLoggingOut, setIsLoggingOut] = useState(false);
-
+    const { profileName, occupation } = useSettingsStore();
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (
@@ -26,6 +30,8 @@ export const SidebarFooter = () => {
                 close();
             }
         }
+
+        document.addEventListener("mousedown", handleClickOutside);
 
         return () =>
             document.removeEventListener(
@@ -42,36 +48,33 @@ export const SidebarFooter = () => {
         try {
             await authApi.logout();
 
-            // Remove the authenticated user from React Query cache.
             queryClient.removeQueries({
                 queryKey: AUTH_QUERY_KEY,
             });
+
             broadcastAuthEvent({ type: "logout" });
             close();
-
-            // Go back to the login page.
             navigate("/login", { replace: true });
         } catch (error) {
             console.error("Logout failed:", error);
         } finally {
-            
             setIsLoggingOut(false);
         }
     };
 
     return (
-        <div className={styles.footer}>
+        <div className={styles.footer} ref={ref}>
             {open && (
                 <div
                     className={styles.menu}
                     id="railUserMenu"
-                    ref={ref}
                 >
-                    <button
+                    <NavLink to="/settings"
                         className={styles["menuItem"]}
+                        onClick={() => close()}
                     >
-                        Profile settings
-                    </button>
+                        {t("common.profileSettings")}
+                    </NavLink>
 
                     <div className={styles["menuDivider"]}></div>
 
@@ -80,7 +83,9 @@ export const SidebarFooter = () => {
                         onClick={handleLogout}
                         disabled={isLoggingOut}
                     >
-                        {isLoggingOut ? "Logging out..." : "Logout"}
+                        {isLoggingOut
+                            ? t("common.loggingOut")
+                            : t("actions.logout")}
                     </button>
                 </div>
             )}
@@ -93,22 +98,29 @@ export const SidebarFooter = () => {
                 }}
             >
                 <div className={styles.userCardLayout}>
-                    <span className={styles.avatar}>
-                        SS
-                    </span>
+                    <UserAvatar
+                        name={profileName}
+                        avatarUrl={user?.profile_picture ?? null}
+                        size={34}
+                        className={styles.avatar}
+                    />
 
                     <div className={styles.userInfo}>
                         <div className={styles.userName}>
-                            Sarthak Sambharia
+                            {profileName}
                         </div>
 
                         <div className={styles.userRole}>
-                            Employee
+                            {occupation}
                         </div>
                     </div>
                 </div>
 
-                <HiChevronUp color="white" />
+                {open ? (
+                    <HiChevronUp color="white" aria-hidden="true" className="mt-5" />
+                ) : (
+                    <HiChevronDown color="white" aria-hidden="true" className="mt-5" />
+                )}
             </button>
         </div>
     );

@@ -49,8 +49,9 @@
 }
 
 
-@media (max-width:640px) {
+@media (max-width:40rem) {
     .starter-grid {
         grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
 }

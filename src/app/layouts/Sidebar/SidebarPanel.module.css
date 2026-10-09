@@ -7,7 +7,7 @@
 
     background: var(--bg-sidebar);
 
-    border-right: 1px solid var(--sidebar-border);
+    border-right: 1px solid var(--text-inverse-dim);
 
     width: calc(100% - 28px);
     max-width: 200px;
@@ -23,4 +23,24 @@
     width: 0;
     opacity: 0;
     pointer-events: none;
+}
+
+@media (max-width: 40rem) {
+    .panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+
+        width: 18rem;
+        max-width: 82vw;
+
+        z-index: 1000;
+    }
+
+    .collapsed {
+        width: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
 }

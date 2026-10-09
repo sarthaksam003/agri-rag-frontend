@@ -2,7 +2,7 @@ import { cn } from "@/shared/lib/cn";
 import type { HTMLAttributes, PropsWithChildren } from "react";
 import styles from "./StatusPill.module.css";
 
-type StatusPillVariant = "simple" | "multi";
+type StatusPillVariant = "simple" | "multiquery";
 
 interface StatusPillProps
   extends HTMLAttributes<HTMLSpanElement>,
@@ -20,7 +20,7 @@ export function StatusPill({
     <span
       className={cn(
         styles.statusPill,
-        variant === "multi" && styles.mq,
+        variant === "multiquery" && styles.mq,
         className
       )}
       {...props}

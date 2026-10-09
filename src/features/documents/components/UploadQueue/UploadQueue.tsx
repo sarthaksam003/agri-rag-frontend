@@ -3,7 +3,7 @@ import type { DocumentFile } from "@/features/documents/types/document";
 import UploadItem from "../UploadItem/UploadItem";
 
 import styles from "./UploadQueue.module.css";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 interface UploadQueueProps {
 
     documents: DocumentFile[];
@@ -11,7 +11,7 @@ interface UploadQueueProps {
 }
 
 const UploadQueue = ({ documents }: UploadQueueProps) => {
-
+    const { t } = useTranslation();
     const processingDocuments =
 
         documents.filter(
@@ -28,8 +28,7 @@ const UploadQueue = ({ documents }: UploadQueueProps) => {
 
         <section className={styles.queue}>
 
-            <h3>Processing...</h3>
-
+            <h3>{t("documents.processing")}</h3>
             <div className={styles.items}>
 
                 {processingDocuments.map(document => (

@@ -1,3 +1,27 @@
-.iconHamburger, .iconClose {
+.iconHamburger,
+.iconClose {
+    /* margin-top: 1rem; */
+    color: var(--text-inverse-dim);
+}
+.iconHamburger:hover ,
+.iconClose:hover {
+    /* margin-top: 1rem; */
+    color: var(--text-inverse);
+}
+
+.toggle {
     margin-top: 1rem;
+}
+
+
+@media (max-width: 40rem) {
+
+    .iconHamburger,
+    .iconClose {
+        margin-top: 0;
+    }
+
+    .toggle {
+        margin-top: 0;
+    }
 }

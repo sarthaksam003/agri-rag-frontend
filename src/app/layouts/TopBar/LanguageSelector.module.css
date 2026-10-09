@@ -13,6 +13,23 @@
     transition: border-color .15s ease, box-shadow .15s ease;
 }
 
+.langGlyph,
+.menu-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-app);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
 .langTrigger:hover {
     border-color: #C7CCDA;
     box-shadow: var(--shadow-sm);
@@ -66,14 +83,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 12px;
     width: 100%;
-    padding: 9px 10px;
-    border-radius: 7px;
+    min-height: 58px;
+    padding: 9px 12px;
+    border-radius: 8px;
     border: none;
     background: transparent;
     cursor: pointer;
-    font-size: 13px;
     color: var(--text-primary);
     text-align: left;
 }
@@ -82,10 +99,34 @@
     background: var(--bg-app);
 }
 
+.menu-item-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
 .menu-item .mi-main {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+}
+
+.native-name {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.english-name {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
 }
 
 .menu-item .mi-desc {
@@ -96,6 +137,34 @@
 
 .menu-item.selected {
     background: var(--accent-amber-soft);
+}
+
+.menu-item.selected .native-name {
+    color: var(--bg-sidebar-hover);
+}
+
+.selected-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgb(15 23 42 / 12%);
+}
+
+.selected-check svg {
+    width: 17px;
+    height: 17px;
+}
+
+.selected-check path {
+    stroke: var(--accent-amber);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .menu-item.danger {

@@ -9,6 +9,8 @@ interface DocumentStore {
 
     selectedDocument: DocumentFile | null;
 
+    selectedPage: number | null;
+
     search: string;
 
     isUploading: boolean;
@@ -27,6 +29,11 @@ interface DocumentStore {
         document: DocumentFile
     ) => void;
 
+    updateProcessingDocument: (
+        id: string,
+        updates: Partial<DocumentFile>
+    ) => void;
+
     removeProcessingDocument: (
         id: string
     ) => void;
@@ -38,7 +45,7 @@ interface DocumentStore {
     ) => void;
 
     openPreview: (
-        document: DocumentFile
+        document: DocumentFile, page_number?: number
     ) => void;
 
     closePreview: () => void;
@@ -55,7 +62,7 @@ export const useDocumentStore =
         selectedDocument: null,
 
         search: "",
-
+        selectedPage: null,
         isUploading: false,
 
         setDocuments: (documents) =>
@@ -89,17 +96,18 @@ export const useDocumentStore =
                     state.selectedDocument?.id === id
                         ? null
                         : state.selectedDocument,
+                selectedPage:
+                    state.selectedDocument?.id === id
+                        ? null
+                        : state.selectedPage,
             })),
 
         clearDocuments: () =>
             set({
-
                 documents: [],
-
                 processingDocuments: [],
-
                 selectedDocument: null,
-
+                selectedPage: null,
             }),
 
         addProcessingDocument:
@@ -114,6 +122,18 @@ export const useDocumentStore =
 
                     ],
 
+                })),
+
+        updateProcessingDocument:
+            (id, updates) =>
+                set((state) => ({
+                    processingDocuments:
+                        state.processingDocuments.map(
+                            document =>
+                                document.id === id
+                                    ? { ...document, ...updates }
+                                    : document,
+                        ),
                 })),
 
         removeProcessingDocument:
@@ -140,15 +160,16 @@ export const useDocumentStore =
                 }),
 
         openPreview:
-            (document) =>
+            (document, pageNumber) =>
                 set({
-                    selectedDocument:
-                        document,
+                    selectedDocument: document,
+                    selectedPage: pageNumber ?? null,
                 }),
 
         closePreview: () =>
             set({
                 selectedDocument: null,
+                selectedPage: null,
             }),
 
     }));

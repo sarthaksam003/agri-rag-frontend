@@ -12,7 +12,7 @@ interface ConversationStore {
 
     error: unknown;
 
-    ragMode: "Simple" | "Multi-query";
+    // ragMode: "simple" | "multiquery";
 
     sourceLanguage: string;
 
@@ -24,7 +24,7 @@ interface ConversationStore {
 
     clearError(): void;
 
-    setRagMode(mode: "Simple" | "Multi-query"): void;
+    // setRagMode(mode: "simple" | "multiquery"): void;
 
     setSourceLanguage(language: string): void;
 
@@ -51,7 +51,7 @@ export const useConversationStore = create<ConversationStore>((set) => ({
 
     error: null,
 
-    ragMode: "Simple",
+    // ragMode: "simple",
 
     sourceLanguage: "en",
 
@@ -75,10 +75,10 @@ export const useConversationStore = create<ConversationStore>((set) => ({
             error: null,
         }),
 
-    setRagMode: (mode) =>
-        set({
-            ragMode: mode,
-        }),
+    // setRagMode: (mode) =>
+    //     set({
+    //         ragMode: mode,
+    //     }),
 
     setSourceLanguage: (language) =>
         set({

@@ -1,19 +1,39 @@
-import { LanguageSelector } from '@/app/layouts/TopBar/LanguageSelector'
-import { IconButton } from '@/shared/components/ui/IconButton/IconButton'
+import { LanguageSelector } from "@/app/layouts/TopBar/LanguageSelector";
 import styles from "./TopBarRight.module.css";
+import { IoAccessibility } from "react-icons/io5";
+import { useTranslation } from "@/features/localization/useTranslation";
 
 export const TopBarRight = () => {
+  const { t } = useTranslation();
+  const handleAccessibilityClick = () => {
+    console.log("[Accessibility] TopBar button clicked");
+
+    const ux4gTrigger = document.getElementById(
+      "uw-widget-custom-trigger",
+    );
+
+    console.log("[Accessibility] UX4G trigger:", ux4gTrigger);
+
+    if (ux4gTrigger) {
+      setTimeout(() => {
+        ux4gTrigger.click();
+      }, 0);
+    }
+  };
+
   return (
     <div className={styles["topbarRight"]}>
       <LanguageSelector />
-      <IconButton
-        icon={<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="18" rx="1" /><rect x="14" y="3" width="7" height="18" rx="1" /></svg>}
-        title={"Toggle source inspector"}
-      />
-      <IconButton
-        icon={<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="1" /><circle cx="12" cy="5" r="1" /><circle cx="12" cy="19" r="1" /></svg>}
-        title={"Session options"}
-      />
+
+      <button
+        type="button"
+        className={styles["accessibilityButton"]}
+        aria-label="Accessibility options"
+        onClick={handleAccessibilityClick}
+        title={t("common.accessibilityOptions")}
+      >
+        <IoAccessibility />
+      </button>
     </div>
-  )
-}
+  );
+};

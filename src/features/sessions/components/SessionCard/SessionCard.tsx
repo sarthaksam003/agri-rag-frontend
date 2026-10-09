@@ -1,4 +1,5 @@
 import { FiMessageSquare, FiTrash2 } from "react-icons/fi";
+import { useTranslation } from "@/features/localization/useTranslation";
 
 import type { Session } from "../../types/session.types";
 
@@ -15,6 +16,8 @@ const SessionCard = ({
   onDelete,
   onOpen,
 }: SessionCardProps) => {
+  const { t } = useTranslation();
+
   const handleDelete = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -46,16 +49,18 @@ const SessionCard = ({
         <div className={styles.subtitle}>
           {session.messageCount}{" "}
           {session.messageCount === 1
-            ? "message"
-            : "messages"}
+            ? t("sessions.message")
+            : t("sessions.messages")}
         </div>
       </div>
 
       <button
         type="button"
         className={styles.deleteButton}
-        title="Delete session"
-        aria-label={`Delete ${session.title}`}
+        title={t("sessions.deleteTooltip")}
+        aria-label={t("sessions.deleteAriaLabel", {
+          title: session.title,
+        })}
         onClick={handleDelete}
       >
         <FiTrash2 />

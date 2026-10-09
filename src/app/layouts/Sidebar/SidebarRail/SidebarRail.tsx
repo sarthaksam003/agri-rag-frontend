@@ -8,14 +8,22 @@ export const SidebarRail = () => {
     const { isCollapsed } = useSidebarStore();
 
     return (
-        <aside className={styles.rail}>
-            <RaileToggle />
+        <aside
+            className={`${styles.rail} ${
+                isCollapsed ? styles.railCollapsed : styles.railExpanded
+            }`}
+        >
+            {isCollapsed && <RaileToggle />}
 
-            {isCollapsed && <RailNavigation />}
+            {isCollapsed && (
+                <div className={styles.desktopRailContent}>
+                    <RailNavigation />
 
-            <div className={styles.spacer} />
+                    <div className={styles.spacer} />
 
-            {isCollapsed && <RailFooter />}
+                    <RailFooter />
+                </div>
+            )}
         </aside>
     );
 };

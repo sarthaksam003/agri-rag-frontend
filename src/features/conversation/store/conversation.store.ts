@@ -5,49 +5,52 @@ import { create } from 'zustand';
 interface ConversationStore {
   messages: ChatMessage[];
   sessionId: string | null;
+  conversationTitle: string | null;
+
   status: ConversationStatus;
   error: unknown;
-
-  ragMode: "Simple" | "Multi-query";
-  sourceLanguage: string;
+  activeRequestSessionId: string | null;
 
   setSessionId: (id: string | null) => void;
+  setConversationTitle: (title: string | null) => void;
 
-  setRagMode: (mode: "Simple" | "Multi-query") => void;
-  setSourceLanguage: (lang: string) => void;
 
   setError: (error: unknown) => void;
   clearError: () => void;
 
   addMessage: (message: ChatMessage) => void;
-
+  removeMessage: (messageId: string) => void;
+  updateMessage: (
+    messageId: string,
+    updates: Partial<ChatMessage>
+  ) => void;
 
   clear: () => void;
 
 
   setStatus: (status: ConversationStatus) => void
   setMessages: (messages: ChatMessage[]) => void,
+  setActiveRequestSessionId: (id: string | null) => void;
 }
 
-export const useConversationStore = create<ConversationStore>((set, get) => ({
+export const useConversationStore = create<ConversationStore>((set) => ({
   // State
   messages: [],
   sessionId: null,
+  conversationTitle: null,
   error: null,
-  ragMode: 'Simple',
-  sourceLanguage: 'or',    // ← top-level state
   status: "idle",
+  activeRequestSessionId: null,
+
   // Actions
-  setRagMode: (mode: "Simple" | "Multi-query") => set({ ragMode: mode }),
-  setSourceLanguage: (lang) => set({ sourceLanguage: lang }),  // ← top-level action
   setError: (error) => set({ error }),
   clearError: () => set({ error: null }),
   clear: () =>
     set({
       messages: [],
       sessionId: null,
+      conversationTitle: null,
       error: null,
-      status: "idle",
     }),
   addMessage: (message) =>
     set((state) => ({
@@ -61,10 +64,27 @@ export const useConversationStore = create<ConversationStore>((set, get) => ({
       ],
 
     })),
-
-
+  removeMessage: (messageId) =>
+    set((state) => ({
+      messages: state.messages.filter(
+        (message) => message.id !== messageId
+      ),
+    })),
+  updateMessage: (messageId, updates) =>
+    set((state) => ({
+      messages: state.messages.map((message) =>
+        message.id === messageId
+          ? { ...message, ...updates }
+          : message
+      ),
+    })),
 
   setSessionId: (id) => set({ sessionId: id }),
+  setConversationTitle: (title) =>
+    set({ conversationTitle: title }),
+  setActiveRequestSessionId: (id) =>
+    set({ activeRequestSessionId: id }),
+
   setMessages: (messages) => set({ messages }),
   setStatus: (status: ConversationStatus) =>
     set({

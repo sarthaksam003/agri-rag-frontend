@@ -1,5 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { LoadingScreen } from "@/app/router/LoadingScreen";
 
 export function ProtectedRoute() {
     const { isLoading, isAuthenticated } = useAuth();
@@ -8,7 +9,7 @@ export function ProtectedRoute() {
     if (isLoading) {
         return (
             <div className="flex min-h-screen items-center justify-center">
-                <p>Loading...</p>
+                <LoadingScreen />
             </div>
         );
     }

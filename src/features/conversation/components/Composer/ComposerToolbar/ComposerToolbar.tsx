@@ -1,7 +1,6 @@
-import AttachButton from "@/features/conversation/components/Composer/ComposerToolbar/AttachButton";
 import styles from "./ComposerToolbar.module.css"
-import { useSettingsStore } from "@/features/settings/store/settings.store";
-
+// import { useSettingsStore } from "@/features/settings/store/settings.store";
+// import { useTranslation } from "@/features/localization/useTranslation";
 interface ComposerToolbarProps {
 
   disabled: boolean;
@@ -12,14 +11,25 @@ interface ComposerToolbarProps {
   onSend(): void;
 }
 
-const ComposerToolbar = ({ onAttach, disabled }: ComposerToolbarProps) => {
-  const {ragMode, maxQueries} = useSettingsStore();
+const ComposerToolbar = (_props: ComposerToolbarProps) => {
+  // const { ragMode, maxQueries } = useSettingsStore();
+  // const { t } = useTranslation();
+  // const modeLabel =
+  //   ragMode === "multiquery"
+  //     ? t("chat.multiQueryRagMode", {
+  //       count: maxQueries,
+  //     })
+  //     : t("chat.simpleRagMode");
   return (
     <div className={styles["composer-toolbar"]}>
       <div className={styles["toolbar-left"]}>
-        <AttachButton onAttach={onAttach} />
+        {/* <AttachButton onAttach={onAttach} /> */}
       </div>
-      <div className={styles["composer-hint"]} id="composerHint">{ragMode == "multi"? `Multi-query RAG mode (${maxQueries} queries)`:"Simple RAG mode"} · Enter to send · Shift+Enter for new line</div>
+      <div className={styles["composer-hint"]} id="composerHint">
+        {/* {t("chat.composerHint", {
+          mode: modeLabel,
+        })} */}
+      </div>
     </div>
   )
 }

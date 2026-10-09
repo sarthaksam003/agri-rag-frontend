@@ -1,7 +1,7 @@
 import type { Session } from "../../types/session.types";
 
 import SessionCard from "../SessionCard/SessionCard";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 import styles from "./SessionList.module.css";
 
 interface SessionListProps {
@@ -19,10 +19,11 @@ const SessionList = ({
   onDelete,
   onOpen,
 }: SessionListProps) => {
+  const { t } = useTranslation();
   if (isLoading) {
     return (
       <div className={styles.message}>
-        Loading sessions...
+        {t("sessions.loading")}
       </div>
     );
   }
@@ -31,8 +32,8 @@ const SessionList = ({
     return (
       <div className={styles.message}>
         {isSearching
-          ? "No sessions match your search."
-          : "No sessions yet."}
+          ? t("sessions.noSearchResults")
+          : t("sessions.empty")}
       </div>
     );
   }

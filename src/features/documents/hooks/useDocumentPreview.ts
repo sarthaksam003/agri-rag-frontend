@@ -7,6 +7,10 @@ export function useDocumentPreview() {
             state => state.selectedDocument
         );
 
+    const selectedPage =
+        useDocumentStore(
+            state => state.selectedPage
+        );
     const openPreview =
         useDocumentStore(
             state => state.openPreview
@@ -20,6 +24,8 @@ export function useDocumentPreview() {
     return {
 
         selectedDocument,
+
+        selectedPage,
 
         openPreview,
 

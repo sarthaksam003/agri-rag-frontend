@@ -5,21 +5,24 @@ import { AppMain } from "@/shared/components/layout/AppMain";
 import styles from "./RootLayout.module.css";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useTranslation } from "@/features/localization/useTranslation";
 export function RootLayout() {
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const tabNames: Record<string, string> = {
-      "/chat": "Chat",
-      "/documents": "Documents",
-      "/sessions": "Sessions",
-      "/settings": "Settings",
+      "/chat": t("navigation.chat"),
+      "/documents": t("navigation.documents"),
+      "/sessions": t("navigation.sessions"),
+      "/settings": t("navigation.settings"),
     };
 
     const tabName = tabNames[location.pathname] ?? "AgriChat";
 
     document.title = `${tabName} | AgriChat`;
-  }, [location.pathname]);
+  }, [location.pathname, t]);
+
   return (
     <AppShell>
       <Sidebar />

@@ -1,7 +1,7 @@
 import DocumentManager from "../components/DocumentManager/DocumentManager";
 import styles from "./DocumentsPage.module.css";
 import { IoDocumentOutline } from "react-icons/io5";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 import DocumentPreviewPanel from "@/shared/components/DocumentPreviewPanel";
 import { useDocumentPreview } from "@/features/documents/hooks/useDocumentPreview";
 import DocumentPreview from "@/features/documents/components/DocumentPreview/DocumentPreview";
@@ -12,7 +12,21 @@ const DocumentsPage = () => {
     isOpen,
     closePreview,
   } = useDocumentPreview();
+  const { t } = useTranslation();
 
+  const handleDownload = () => {
+    if (!selectedDocument?.fileUrl) {
+      return;
+    }
+
+    const link = document.createElement("a");
+
+    link.href = selectedDocument.fileUrl;
+    link.download =
+      selectedDocument.filename || "document.pdf";
+
+    link.click();
+  };
   return (
     <section className={styles["view"]}>
       <div className={styles["page"]}>
@@ -21,23 +35,28 @@ const DocumentsPage = () => {
           <div className={styles["page-header"]}>
             <div className={styles["pageTitle"]}>
               <IoDocumentOutline />
-              Document Management
+              {t("documents.managementTitle")}
             </div>
 
             <div className={styles["pageSub"]}>
-              Upload, view, and manage the knowledge base your chatbot searches.
+              {t("documents.managementDescription")}
             </div>
           </div>
 
-          <DocumentPreviewPanel
-            open={isOpen}
-            onClose={closePreview}
-            title={selectedDocument?.filename}
-          >
-            {selectedDocument && (
-              <DocumentPreview />
-            )}
-          </DocumentPreviewPanel>
+          <div>
+
+            <DocumentPreviewPanel
+              open={isOpen}
+              onClose={closePreview}
+              title={selectedDocument?.filename}
+              onDownload={handleDownload}
+
+            >
+              {selectedDocument && (
+                <DocumentPreview />
+              )}
+            </DocumentPreviewPanel>
+          </div>
 
           <DocumentManager />
 

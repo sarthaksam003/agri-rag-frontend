@@ -5,17 +5,87 @@
     min-width: 0;
 }
 
+.topbarContent {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+}
+
 .topbarTitle {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .topbarSub {
-    font-size: 12px;
+    min-width: 0;
+    overflow: hidden;
+
+    font-size: 0.75rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 2px;
+    gap: 0.5rem;
+    margin-top: 0.125rem;
+}
+
+.topbarSub :global(.statusPill) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mobileSidebarToggle {
+    display: none;
+}
+
+@media (max-width: 40rem) {
+    .mobileSidebarToggle {
+        display: flex;
+        flex-shrink: 0;
+    }
+
+    .rail {
+        display: none;
+    }
+
+    .panel {
+        position: fixed;
+        inset-block: 0;
+        left: 0;
+
+        width: 18rem;
+        max-width: 82vw;
+
+        z-index: 1000;
+    }
+
+    .panel {
+        position: fixed;
+        inset-block: 0;
+        left: 0;
+
+        width: 18rem;
+        max-width: 82vw;
+
+        z-index: 1000;
+    }
+
+    .topbarSub {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.125rem;
+
+        white-space: nowrap;
+    }
 }

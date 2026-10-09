@@ -51,7 +51,7 @@
   background: transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  color: var(--text-inverse);
+  color: var(--text-secondary);
   transition: border-color .15s ease, color .15s ease, box-shadow .15s ease;
   position: relative;
   flex-shrink: 0;

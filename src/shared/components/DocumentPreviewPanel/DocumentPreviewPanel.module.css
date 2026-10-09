@@ -33,6 +33,7 @@
     flex-direction: column;
 
     z-index: 100;
+    border-left: 1px solid var(--border);
 
     animation: slideDesktop .25s ease;
 

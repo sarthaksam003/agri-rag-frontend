@@ -7,16 +7,16 @@
 
 
 .msg-avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 88px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-size: 12px;
     font-weight: 700;
-    margin-top: 2px;
+    /* margin-top: 2px; */
 }
 
 .msg-body {
@@ -24,6 +24,23 @@
     flex-direction: column;
     gap: 6px;
     max-width: 78%;
+}
+
+.msg-body-editing {
+    width: calc(100% - 68px);
+    max-width: none;
+}
+
+.msg-body-editing textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100px;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-top-left-radius: 4px;
+    color: var(--text-primary);
 }
 
 .msg-bubble {
@@ -53,6 +70,7 @@
 .msg.user .msg-bubble {
     background: var(--bg-sidebar);
     color: var(--text-inverse);
+    border: 1px solid var(--border);
     border-top-right-radius: 4px;
 }
 
@@ -92,8 +110,74 @@
     background: var(--bg-app);
 }
 
+.resend-btn {
+    border-color: var(--accent-emerald);
+    color: var(--accent-emerald);
+}
+
+.resend-btn:hover {
+    border-color: var(--accent-emerald);
+    color: var(--accent-emerald);
+    background: var(--accent-emerald-soft);
+}
+
+.cancel-btn {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+.cancel-btn:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    background: var(--accent-red-soft);
+}
+
 .copy-btn.copied {
     border-color: var(--accent-emerald);
     color: var(--accent-emerald);
     background: var(--accent-emerald-soft);
+}
+
+.edit-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    resize: both;
+    font: inherit;
+    line-height: 1.5;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--bg-panel);
+}
+
+.edit-input:focus {
+    border-color: #1d4ed8;
+}
+
+
+@media (max-width: 640px) {
+    .msg {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .msg-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .msg-body {
+        max-width: calc(100% - 48px);
+    }
+
+    .msg-body-editing {
+        width: calc(100% - 48px);
+        max-width: none;
+    }
+
+    .msg-body-editing textarea {
+        min-height: 90px;
+    }
 }

@@ -3,9 +3,9 @@
 :root {
   --bg-panel: #FFFFFF;
   --bg-app: #EEF1F6;
-  --bg-sidebar: #10162B;
+  --bg-sidebar: #041655;
   --bg-sidebar-raised: #171F3B;
-  --bg-sidebar-hover: #1E2745;
+  --bg-sidebar-hover: #031b70;
   --sidebar-border: #262F52;
 
   --text-primary: #18181b;
@@ -55,4 +55,428 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+/* =========================================================
+   UX4G Accessibility Widget — AgriChat Theme
+   ========================================================= */
+
+/* Main header */
+#uw-main .ux4g-accessibility-second-panel {
+  background: var(--bg-sidebar) !important;
+}
+
+/* Accessibility Profile icon */
+/* #uw-main .ux4g-accessibility-accessibility-profile-icon {
+  color: var(--bg-sidebar-hover) !important;
+} */
+#uw-main .ux4g-accessibility-accessibility-profile-icon::before {
+  background-color: #031b70 !important;
+}
+
+/* Restores the text layout background to transparent so it doesn't span across */
+#uw-main .ux4g-accessibility-accessibility-profile-icon {
+  background-image: url("data:image/svg+xml,%0A%3Csvg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8C0 3.58172 3.58172 0 8 0H32C36.4183 0 40 3.58172 40 8V32C40 36.4183 36.4183 40 32 40H8C3.58172 40 0 36.4183 0 32V8Z' fill='%23031b70'/%3E%3Cpath d='M19.5 14C19.0055 14 18.5222 13.8534 18.1111 13.5787C17.7 13.304 17.3795 12.9135 17.1903 12.4567C17.0011 11.9999 16.9516 11.4972 17.048 11.0123C17.1445 10.5273 17.3826 10.0819 17.7322 9.73223C18.0819 9.3826 18.5273 9.1445 19.0123 9.04804C19.4972 8.95157 19.9999 9.00108 20.4567 9.1903C20.9135 9.37952 21.304 9.69995 21.5787 10.1111C21.8534 10.5222 22 11.0055 22 11.5C21.9993 12.1628 21.7357 12.7983 21.267 13.267C20.7983 13.7357 20.1628 13.9993 19.5 14Z' fill='white'/%3E%3Cpath d='M26.6927 14.0319L26.6743 14.0367L26.6571 14.0419C26.6162 14.0531 26.5754 14.0651 26.5345 14.0775C25.774 14.2959 22.0828 15.3143 19.4824 15.3143C17.0659 15.3143 13.7087 14.4343 12.6347 14.1355C12.5278 14.0951 12.4186 14.0606 12.3078 14.0323C11.5313 13.8323 11 14.6043 11 15.3099C11 16.0088 11.6416 16.3416 12.2894 16.5804V16.5916L16.1808 17.7812C16.5784 17.9304 16.6846 18.0828 16.7366 18.2148C16.9053 18.6384 16.7705 19.4772 16.7227 19.77L16.4856 21.57L15.1701 28.6176C15.166 28.6368 15.1623 28.6564 15.1591 28.6764L15.1497 28.7272C15.0549 29.3732 15.5395 30 16.4574 30C17.2584 30 17.6119 29.4588 17.7652 28.7224C17.9184 27.986 18.9095 22.4196 19.4816 22.4196C20.0538 22.4196 21.2324 28.7224 21.2324 28.7224C21.3856 29.4588 21.7391 30 22.5401 30C23.4605 30 23.9451 29.3704 23.8479 28.7224C23.8393 28.6672 23.8291 28.6128 23.8168 28.56L22.4833 21.5708L22.2467 19.7708C22.0755 18.7224 22.2132 18.376 22.2598 18.2948C22.261 18.2928 22.2621 18.2908 22.263 18.2888C22.3072 18.2088 22.5082 18.0296 22.9774 17.8572L26.626 16.6088C26.6485 16.6029 26.6705 16.596 26.6922 16.588C27.3461 16.348 28 16.016 28 15.3107C28 14.6055 27.4691 13.8323 26.6927 14.0319Z' fill='white'/%3E%3C/svg%3E%0A") !important;
+}
+/* ---------------------------------------------------------
+   Grid / List view buttons
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-icon-btn {
+  background: var(--bg-app) !important;
+  border-color: var(--border) !important;
+  color: var(--bg-sidebar-hover) !important;
+}
+
+#uw-main .ux4g-accessibility-icon-btn:hover,
+#uw-main .ux4g-accessibility-icon-btn:focus-visible {
+  background: var(--bg-sidebar-hover) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+#uw-main .ux4g-accessibility-icon-btn.ux4g-accessibility-active {
+  background: var(--bg-app) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: var(--bg-sidebar-hover) !important;
+}
+
+#uw-main .ux4g-accessibility-icon-btn.ux4g-accessibility-active svg {
+  fill: var(--bg-sidebar-hover) !important;
+}
+
+/* ---------------------------------------------------------
+   Feature cards
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i {
+  background: var(--bg-app) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:focus-visible {
+  background: var(--bg-sidebar-hover) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+/* Icons inside feature cards */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:focus-visible .ux4g-accessibility-uwaw-features__item__icon {
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Hover description
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-uwaw-feature-desc,
+#uw-main .ux4g-accessibility-uwaw-feature-desc:hover {
+  background: var(--bg-sidebar-hover) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-feature-desc .ux4g-accessibility-uwaw-feature-desc-title,
+#uw-main .ux4g-accessibility-uwaw-feature-desc .uwaw-feature-desc-text {
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Selected feature / active state
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] {
+  background: var(--bg-sidebar-hover) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+/* UX4G Dark Mode uses body class rather than aria-pressed */
+body.ux4g-accessibility-dark-mode #uw-main .ux4g-accessibility-uwaw-features__item__i {
+  color: var(--text-primary);
+}
+
+/* ---------------------------------------------------------
+   Active tick
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-tick-active {
+  /* background: var(--bg-sidebar-hover) !important; */
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Section outlines / active sections
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-uw-card:hover,
+#uw-main .ux4g-accessibility-active,
+#uw-main .ux4g-accessibility-active:hover,
+#uw-main .ux4g-accessibility-profile-item:hover,
+#uw-main .ux4g-accessibility-uw-section:hover,
+#uw-main .ux4g-accessibility-uw-section-grid-col-two:hover {
+  border-color: var(--bg-sidebar-hover) !important;
+}
+
+/* ---------------------------------------------------------
+   Accessibility Profile button
+   --------------------------------------------------------- */
+
+#uw-main #profileDropdown {
+  background: var(--bg-app) !important;
+  border-color: var(--border) !important;
+}
+
+#uw-main #profileDropdown:hover,
+#uw-main #profileDropdown:focus-visible {
+  /* background: var(--bg-sidebar-hover) !important; */
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Reset button
+   --------------------------------------------------------- */
+
+#uw-main #reset-all {
+  background: var(--bg-sidebar) !important;
+  background-color: var(--bg-sidebar) !important;
+  border-color: var(--bg-sidebar) !important;
+  color: #ffffff !important;
+}
+
+#uw-main #reset-all:hover,
+#uw-main #reset-all:focus-visible {
+  background: var(--bg-sidebar-hover) !important;
+  background-color: var(--bg-sidebar-hover) !important;
+  border-color: var(--bg-sidebar-hover) !important;
+  color: #ffffff !important;
+}
+
+#uw-main #reset-all .ux4g-accessibility-reset-icon {
+  background-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   Switch / step controls
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-switch input:checked+.ux4g-accessibility-toggle__slider {
+  background: var(--bg-sidebar-hover) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__step.ux4g-accessibility-active {
+  background: var(--bg-app) !important;
+}
+
+/* ---------------------------------------------------------
+   Links
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-copyrights-accessibility a span {
+  color: var(--bg-sidebar-hover) !important;
+}
+
+/* ---------------------------------------------------------
+   Scrollbar
+   --------------------------------------------------------- */
+
+#uw-main .ux4g-accessibility-h-scroll {
+  scrollbar-color: var(--bg-sidebar-hover) transparent !important;
+}
+
+.ux4g-accessibility-tick-active {
+  color: white !important;
+}
+
+#uw-main .ux4g-accessibility-icon-btn:not(.ux4g-accessibility-active):hover svg {
+  fill: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-icon-btn:not(.ux4g-accessibility-active):hover svg path {
+  fill: var(--bg-app) !important;
+  stroke: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__item__icon {
+  color: var(--bg-sidebar-hover) !important;
+}
+
+#uw-main .ux4g-accessibility-tick-active svg,
+#uw-main .ux4g-accessibility-tick-active svg path {
+  fill: var(--bg-app) !important;
+  stroke: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__icon {
+  color: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg path {
+  fill: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-uwaw-features__item__icon {
+  color: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg path {
+  fill: var(--bg-app) !important;
+}
+
+/* Fix default labels, icon wrappers, and SVG lines to use your dark blue */
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__item__icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg,
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg path,
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg rect,
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg circle {
+  color: var(--bg-sidebar-hover) !important;
+  fill: var(--bg-sidebar-hover) !important;
+}
+
+/* If any icon uses strokes instead of fills for its lines */
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg[stroke],
+#uw-main .ux4g-accessibility-uwaw-features__item__i svg path[stroke] {
+  stroke: var(--bg-sidebar-hover) !important;
+  fill: none !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg path,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg rect,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg circle {
+  color: var(--bg-app) !important;
+  fill: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg[stroke],
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover svg path[stroke] {
+  stroke: var(--bg-app) !important;
+}
+
+/* Target the inner checkmark symbol and color it white/light */
+#uw-main .ux4g-accessibility-tick-active,
+#uw-main .ux4g-accessibility-tick-active::before,
+#uw-main .ux4g-accessibility-tick-active::after,
+#uw-main .ux4g-accessibility-tick-active svg,
+#uw-main .ux4g-accessibility-tick-active svg path {
+  color: var(--bg-app) !important;
+  fill: var(--bg-app) !important;
+  stroke: var(--bg-app) !important;
+}
+
+/* Fix text and icon colors inside active/pressed cards */
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-uwaw-features__item__name,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-uwaw-features__item__icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg path,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg rect,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg circle {
+  color: var(--bg-app) !important;
+  fill: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg[stroke],
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] svg path[stroke] {
+  stroke: var(--bg-app) !important;
+}
+
+/* 1A. Default State - Purple/Black icons to deep blue */
+#uw-main .ux4g-accessibility-icon {
+  color: var(--bg-sidebar-hover) !important;
+}
+
+/* 1B. Hover State - Turn all icons white/light gray instantly */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-icon {
+  color: var(--bg-app) !important;
+}
+
+/* 1C. Active / Pressed State - Forces "NEW" toggled elements (Text Magnify, Voice Support) to turn white */
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-icon {
+  color: var(--bg-app) !important;
+}
+
+/* Color the pseudo-element checkmark symbol inside the circle */
+#uw-main .ux4g-accessibility-tick-active,
+#uw-main .ux4g-accessibility-tick-active::before,
+#uw-main .ux4g-accessibility-tick-active::after {
+  color: var(--bg-app) !important;
+}
+
+/* Blanket custom rule for any text-like elements nested inside a hovered grid card */
+/* =========================================================
+   UX4G Step Indicator Control Bars Patch
+   ========================================================= */
+
+/* 1. Default State (Not Hovered) */
+/* Force the inactive bars to your dark shade (#092283) */
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__step {
+  background-color: var(--text-inverse-dim) !important;
+}
+
+/* Force the currently selected active level bar to use var(--bg-sidebar-hover) */
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-uwaw-features__step.ux4g-accessibility-active {
+  background-color: var(--bg-sidebar-hover) !important;
+}
+
+/* 2. Hover State (When cursor moves over the card) */
+/* Turn the unselected level bars to var(--bg-sidebar) so they contrast against the dark background */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__step {
+  background-color: grey !important;
+}
+
+/* Ensure the active level bar remains crisp white/light gray (var(--bg-app)) */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__step.ux4g-accessibility-active {
+  background-color: var(--bg-app) !important;
+}
+
+/* =========================================================
+   UX4G Background Icon Patch (Using CSS Filters)
+   ========================================================= */
+
+/* 1. Default State: Shifts the purple icons to deep blue (var(--bg-sidebar-hover)) */
+#uw-main .ux4g-accessibility-icon {
+  filter: invert(12%) sepia(35%) saturate(7351%) hue-rotate(228deg) brightness(36%) contrast(106%) !important;
+}
+
+/* 2. Hover State: Shifts icons to light grey/blue (var(--bg-app)) when container is hovered */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-icon {
+  filter: invert(99%) sepia(5%) saturate(347%) hue-rotate(186deg) brightness(101%) contrast(94%) !important;
+}
+
+/* 3. Selected / Pressed State: Shifts "NEW" item icons to white/app color when toggled active */
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-icon {
+  filter: invert(99%) sepia(5%) saturate(347%) hue-rotate(186deg) brightness(101%) contrast(94%) !important;
+}
+
+/* 4. Fix Checkmark Tick Icon Color */
+#uw-main .ux4g-accessibility-tick-active {
+  background-color: var(--bg-sidebar-hover) !important;
+}
+
+.reset-tick {
+  color: var(--bg-app) !important;
+}
+
+#uw-main .ux4g-accessibility-tick-active::before,
+#uw-main .ux4g-accessibility-tick-active::after {
+  /* background-color: var(--bg-app) !important; */
+  color: var(--bg-app) !important;
+}
+
+
+
+/* =========================================================
+   UX4G Icon Color Match Control (High Specificity Fix)
+   ========================================================= */
+
+/* 1. Default State: Forces the icon to stay deep blue when not hovered */
+#uw-main .ux4g-accessibility-uwaw-features__item__i .ux4g-accessibility-icon {
+  color: var(--bg-sidebar-hover) !important;
+}
+
+/* 2. Hover State: Explicitly overwrites the nested font icon color during hover events */
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-uwaw-features__item__icon .ux4g-accessibility-icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i:hover .ux4g-accessibility-icon:hover {
+  filter: invert(99%) sepia(3%) saturate(1006%) hue-rotate(195deg) brightness(97%) contrast(97%) !important;
+}
+
+/* 3. Persistent Selected State: Keeps icons light gray when toggled active */
+#uw-main .ux4g-accessibility-feature-active .ux4g-accessibility-icon,
+#uw-main .ux4g-accessibility-uwaw-features__item__i[aria-pressed="true"] .ux4g-accessibility-icon {
+  color: var(--bg-app) !important;
+}
+
+
+
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 0.75rem 1rem;
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  border: 2px solid var(--accent-indigo);
+  border-radius: 0 0 0.5rem 0;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }

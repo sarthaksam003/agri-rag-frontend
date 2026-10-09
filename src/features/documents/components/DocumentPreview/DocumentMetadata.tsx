@@ -1,13 +1,13 @@
 import styles from "./DocumentMetadata.module.css";
 import { useDocumentPreview } from "../../hooks/useDocumentPreview";
-
+import { useTranslation } from "@/features/localization/useTranslation";
 const DocumentMetadata = () => {
 
     const { selectedDocument } = useDocumentPreview();
 
+    const { t } = useTranslation();
     if (!selectedDocument)
         return null;
-
     return (
 
         <section className={styles.metadata}>
@@ -22,8 +22,7 @@ const DocumentMetadata = () => {
 
                 <div>
 
-                    <label>Type</label>
-
+                    <label>{t("documents.type")}</label>
                     <span>
 
                         {selectedDocument.fileType.toUpperCase()}
@@ -34,8 +33,7 @@ const DocumentMetadata = () => {
 
                 <div>
 
-                    <label>Chunks</label>
-
+                    <label>{t("documents.chunks")}</label>
                     <span>
 
                         {selectedDocument.chunkCount}
@@ -46,8 +44,7 @@ const DocumentMetadata = () => {
 
                 <div>
 
-                    <label>Uploaded</label>
-
+                    <label>{t("documents.uploaded")}</label>
                     <span>
 
                         {selectedDocument.uploadedAt.toLocaleDateString()}

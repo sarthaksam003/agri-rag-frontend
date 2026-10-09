@@ -4,3 +4,37 @@
     gap: 10px;
     flex-shrink: 0;
 }
+
+.accessibilityButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-panel);
+    color: var(--text-primary);
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+}
+
+.accessibilityButton:hover {
+    border-color: #C7CCDA;
+    box-shadow: var(--shadow-sm);
+}
+
+.accessibilityButton:focus-visible {
+    outline: 2px solid var(--accent-indigo);
+    outline-offset: 2px;
+}

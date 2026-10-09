@@ -1,10 +1,14 @@
 import { useSidebarStore } from "@/features/navigation/sidebar.store";
 import styles from "./RailToggle.module.css";
 import { IconButton } from "@/shared/components/ui/IconButton/IconButton";
+import { useTranslation } from "@/features/localization/useTranslation";
 
 const RailToggle = () => {
     const { toggleSidebar, isCollapsed } = useSidebarStore();
-
+    const { t } = useTranslation();
+    const label = !isCollapsed
+        ? t("common.closeSidebar")
+        : t("common.openSidebar");
     return (
         <IconButton
             icon={isCollapsed ?
@@ -22,9 +26,11 @@ const RailToggle = () => {
                 </svg>
 
             }
-            title={"Open Sidebar"}
+            title={label}
+            aria-label={label}
             onClick={toggleSidebar}
             variant="sidebar"
+            className={styles.toggle}
         />
     )
 }

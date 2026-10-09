@@ -8,7 +8,7 @@ export async function sendMockMessage(
         new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
-
+    console.log(text)
     await delay(800 + Math.random() * 1200);
 
     return {
